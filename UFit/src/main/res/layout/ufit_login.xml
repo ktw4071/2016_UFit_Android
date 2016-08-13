@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginbg"
+    android:gravity="center">
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:textColor="@color/colorWhite"
+        android:text="@string/uf_login_choice"/>
+            <RadioGroup
+                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/uf_radio"
+                    android:text="@string/uf_trainer"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11sp"/>
+                <RadioButton
+                    android:layout_marginLeft="62dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/uf_radio"
+                    android:text="@string/uf_member"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11sp"/>
+            </RadioGroup>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_facebook"/>
+            <ImageView
+                android:layout_marginLeft="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_kakao"/>
+            <ImageView
+                android:layout_marginLeft="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_google"/>
+        </LinearLayout>
+
+</LinearLayout>

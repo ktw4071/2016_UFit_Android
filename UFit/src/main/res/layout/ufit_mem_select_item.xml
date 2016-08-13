@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:paddingTop="10dp"
+    android:gravity="center_vertical"
+    android:id="@+id/mem_select_item"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/memselect_img"
+        android:src="@drawable/pic"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/memselect_name"
+        android:textColor="@color/colorBlack"
+        android:text="김비디"
+        android:layout_marginLeft="10dp"/>
+</LinearLayout>

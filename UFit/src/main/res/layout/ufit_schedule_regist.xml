@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mem_reg_dialog"
+    android:background="@drawable/bgbgbgbgb">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:id="@+id/pink_img"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:id="@+id/explain_reg"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:text="2016년 7월 25일"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/schedule_send"
+        android:src="@drawable/pic"
+        android:elevation="2dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="11dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mem_manage_regframe"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="38dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:background="@drawable/rounded_dialog"
+        android:gravity="center_horizontal"
+        android:weightSum="5.5">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_marginTop="86dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkGrey"
+            android:text="회원이름 선택 후, 해당 스케줄을 등록해주세요." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원선택"
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="30sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/selected_member"
+                android:gravity="center"
+                android:background="@drawable/rounded_edittext_black">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:id="@+id/selected_member_img" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:id="@+id/selected_member_name"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간추가"
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="30sp"/>
+            <TextView
+                android:id="@+id/selected_time"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlack"
+                android:background="@drawable/rounded_edittext_black"/>
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</RelativeLayout>

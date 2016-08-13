@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/uf_right_mem_img"
+        android:background="@drawable/pic"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/uf_right_mem_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="황비만"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/uf_right_mem_img"
+        android:layout_centerVertical="true"/>
+
+    <LinearLayout
+        android:id="@+id/uf_rd_popup"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/uf_right_mem_more"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/rd_user_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_home"/>
+        <ImageView
+            android:id="@+id/rd_user_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_call"/>
+        <ImageView
+            android:id="@+id/rd_user_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_message_rd"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/uf_right_mem_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_usermenu"/>
+
+</RelativeLayout>

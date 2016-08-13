@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UFIT</string>
+    <string name="uf_profile">Profile</string>
+    <string name="uf_schedule">Schedule</string>
+    <string name="uf_mem">Clients</string>
+    <string name="uf_message">Message</string>
+    <string name="uf_setting">Setting</string>
+    <string name="uf_inputmember">Input Member</string>
+</resources>

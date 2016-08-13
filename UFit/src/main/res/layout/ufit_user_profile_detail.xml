@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/ufit_toolbar"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:orientation="horizontal">
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                custom:arc_progress="75"
+                custom:arc_finished_color="#214193"
+                custom:arc_unfinished_color="#ffffff"
+                custom:arc_bottom_text="Weight"/>
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                custom:arc_progress="36"
+                custom:arc_finished_color="#F78C02"
+                custom:arc_unfinished_color="#ffffff"
+                custom:arc_bottom_text="Work Level"/>
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                custom:arc_progress="55"
+                custom:arc_finished_color="#A3CC80"
+                custom:arc_unfinished_color="#ffffff"
+                custom:arc_bottom_text="Size Level"/>
+        </LinearLayout>
+    <View
+        android:layout_height="3dp"
+        android:layout_width="match_parent"
+        android:background="#000000">
+    </View>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="체중변화"
+            android:textSize="15sp"/>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/rulerman" />
+        </HorizontalScrollView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher"
+            android:layout_gravity="right"/>
+        <View
+            android:layout_height="3dp"
+            android:layout_width="match_parent"
+            android:background="#000000">
+        </View>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorMain"/>
+        <View
+            android:layout_height="3dp"
+            android:layout_width="match_parent"
+            android:background="#000000">
+        </View>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="신체사이즈"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_size"
+            android:orientation="vertical"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+</ScrollView>

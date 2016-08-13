@@ -1,0 +1,150 @@
+package kr.co.team.LKLH.ufit;
+
+import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class UFitMemberManagementRegister extends AppCompatActivity {
+
+
+    TextView dateTime,selectedName;
+    DrawerLayout memSelectDraw;
+    LinearLayout selectedMember;
+    ImageView selectedImg;
+    TextView selectedTime;
+    int year, month, day, hour, minute;
+    Intent addForList;
+    String _date, _time;
+
+
+    public void setMember(String memberImg, String memberName){
+        Glide.with(UFitApplication.getUFitContext()).load(memberImg).into(selectedImg);
+        selectedName.setText(memberName);
+        memSelectDraw.closeDrawers();
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.ufit_member_draw);
+
+        //시간선택을 위한 그레고리안 캐린더 시간과 분
+        GregorianCalendar calendar = new GregorianCalendar();
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
+        minute= calendar.get(Calendar.MINUTE);
+
+        //Dialog 화면을 꽉차게
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setLayout(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
+
+        //맨위의 현재 날짜 표시
+        final Intent intent = getIntent();
+        _date = intent.getStringExtra("date").substring(0, 4) + intent.getStringExtra("date").substring(6, 8) + intent.getStringExtra("date").substring(10, 12);
+        dateTime = (TextView)findViewById(R.id.explain_reg);
+        dateTime.setText(intent.getStringExtra("date"));
+        memSelectDraw = (DrawerLayout)findViewById(R.id.uf_mem_draw);
+
+        //DrawLayout 리사이클러뷰
+        final Bundle bundle = new Bundle();;
+        if(savedInstanceState == null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            UFitMemberListSelector uFitMemberListSelector = UFitMemberListSelector.newInstance();
+            uFitMemberListSelector.setBundle(bundle);
+            ft.replace(R.id.memberlist_rcv, uFitMemberListSelector);
+            ft.commit();
+        }
+
+        selectedName = (TextView)findViewById(R.id.selected_member_name);
+        selectedImg = (CircleImageView)findViewById(R.id.selected_member_img);
+        selectedMember = (LinearLayout)findViewById(R.id.selected_member);
+        selectedMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                memSelectDraw.openDrawer(GravityCompat.END);
+                Log.e("TTAAGG", bundle.toString());
+            }
+        });
+        selectedTime = (TextView)findViewById(R.id.selected_time);
+        selectedTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new TimePickerDialog(UFitMemberManagementRegister.this,
+                                     TimePickerDialog.THEME_DEVICE_DEFAULT_LIGHT,
+                                     dateListener, day, minute, true).show();
+                if (hour == 0) {
+                    bundle.putString("_time", ""+minute);
+                    Log.e("TAG", bundle.toString());
+                } else {
+                    bundle.putString("_time", hour+""+String.format("%02d", minute));
+                    Log.e("TAG", bundle.toString());
+                }
+            }
+        });
+        findViewById(R.id.schedule_send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!bundle.containsKey("_time") || !bundle.containsKey("_mid")){
+                    Toast.makeText(UFitMemberManagementRegister.this, "값이 입력되지 않았습니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    /*addForList = new Intent();
+                    intent.putExtras(bundle);
+                    setResult(RESULT_OK, intent);
+                    Log.e("TAT", bundle.toString());*/
+                    new AddSchedule().execute("1", Integer.toString(bundle.getInt("_mid")), _date, bundle.getString("_time"));
+                    finish();
+                }
+
+            }
+        });
+    }
+    private TimePickerDialog.OnTimeSetListener dateListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfDay) {
+
+            selectedTime.setText(String.format( "%02d", hourOfDay )+ ":" + String.format("%02d",minuteOfDay));
+            hour = hourOfDay;
+            minute= minuteOfDay;
+        }
+    };
+    class AddSchedule extends AsyncTask<String, Integer, Integer> {
+        @Override
+        protected Integer doInBackground(String... strings) {
+            Log.i("strings[0]", "" + strings[0]);
+            Log.i("strings[1]", "" + strings[1]);
+            Log.i("strings[2]", "" + strings[2]);
+            UFitHttpConnectionHandler.AddMember(strings[0], strings[1], strings[2], strings[3]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+
+            super.onPostExecute(integer);
+        }
+    }
+}
