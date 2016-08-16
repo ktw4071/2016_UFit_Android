@@ -23,13 +23,15 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.codetroopers.betterpickers.timepicker.TimePickerBuilder;
+import com.codetroopers.betterpickers.timepicker.TimePickerDialogFragment;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class UFitMemberManagementRegister extends AppCompatActivity {
+public class UFitMemberManagementRegister extends AppCompatActivity implements TimePickerDialogFragment.TimePickerDialogHandler{
 
 
     TextView dateTime,selectedName;
@@ -93,9 +95,11 @@ public class UFitMemberManagementRegister extends AppCompatActivity {
         selectedTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new TimePickerDialog(UFitMemberManagementRegister.this,
-                                     TimePickerDialog.THEME_DEVICE_DEFAULT_LIGHT,
-                                     dateListener, day, minute, true).show();
+
+                TimePickerBuilder tpb = new TimePickerBuilder()
+                                            .setFragmentManager(getSupportFragmentManager())
+                                            .setStyleResId(R.style.BetterPickersDialogFragment);
+                tpb.show();
                 if (hour == 0) {
                     bundle.putString("_time", ""+minute);
                     Log.e("TAG", bundle.toString());
@@ -111,10 +115,6 @@ public class UFitMemberManagementRegister extends AppCompatActivity {
                 if (!bundle.containsKey("_time") || !bundle.containsKey("_mid")){
                     Toast.makeText(UFitMemberManagementRegister.this, "값이 입력되지 않았습니다", Toast.LENGTH_SHORT).show();
                 } else {
-                    /*addForList = new Intent();
-                    intent.putExtras(bundle);
-                    setResult(RESULT_OK, intent);
-                    Log.e("TAT", bundle.toString());*/
                     new AddSchedule().execute("1", Integer.toString(bundle.getInt("_mid")), _date, bundle.getString("_time"));
                     finish();
                 }
@@ -122,15 +122,25 @@ public class UFitMemberManagementRegister extends AppCompatActivity {
             }
         });
     }
-    private TimePickerDialog.OnTimeSetListener dateListener = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfDay) {
 
-            selectedTime.setText(String.format( "%02d", hourOfDay )+ ":" + String.format("%02d",minuteOfDay));
-            hour = hourOfDay;
-            minute= minuteOfDay;
+    @Override
+    public void onDialogTimeSet(int reference, int hourOfDay, int minute) {
+        final String PM = getResources().getString(R.string.uf_pm);
+        final String AM = getResources().getString(R.string.uf_am);
+        if (hourOfDay > 12) {
+            selectedTime.setText(PM +" " + String.valueOf(hourOfDay-12) + ":" + String.format("%02d",minute));
+        } else if (hourOfDay == 12) {
+            selectedTime.setText(PM + " " +  (String.format( "%02d", hourOfDay )+ ":" + String.format("%02d",minute)));
+        } else if (hourOfDay == 0) {
+            selectedTime.setText(AM +" "+ ("12" + ":" + String.format("%02d",minute)));
+        } else {
+            selectedTime.setText(AM +" "+ String.valueOf(hourOfDay)+ ":" + String.format("%02d",minute));
         }
-    };
+
+        hour = hourOfDay;
+        this.minute = minute;
+    }
+
     class AddSchedule extends AsyncTask<String, Integer, Integer> {
         @Override
         protected Integer doInBackground(String... strings) {

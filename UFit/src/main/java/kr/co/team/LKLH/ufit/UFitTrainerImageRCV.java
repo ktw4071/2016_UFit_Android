@@ -25,10 +25,18 @@ import java.util.ArrayList;
 public class UFitTrainerImageRCV extends Fragment {
 
     RecyclerView rv;
+    UFitTrainerImageRCVAdapter adapter;
+    ArrayList<JSONObject> items;
 
     static UFitTrainerImageRCV newInstance() {
         UFitTrainerImageRCV f = new UFitTrainerImageRCV();
         return f;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        items = new ArrayList<JSONObject>();
     }
 
     @Nullable
@@ -41,10 +49,9 @@ public class UFitTrainerImageRCV extends Fragment {
         return rv;
     }
     public class UFitTrainerImageRCVAdapter extends RecyclerView.Adapter<UFitTrainerImageRCVAdapter.ViewHolder> {
-        ArrayList<JSONObject> items = new ArrayList<>();
 
-        public UFitTrainerImageRCVAdapter(ArrayList<JSONObject> items) {
-            this.items = items;
+        public UFitTrainerImageRCVAdapter(ArrayList<JSONObject> jsonitems) {
+            items = jsonitems;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,8 +82,8 @@ public class UFitTrainerImageRCV extends Fragment {
                     try {
 
                         getFragmentManager().beginTransaction().add(UFitImageViewer
-                                        .newInstance(items.get(position),
-                                                UFitNetworkConstantDefinition.URL_UFIT_TRAINER_ALBUM_UPLOAD), "viewer")
+                                        .newInstance(null, items.get(position),
+                                                UFitNetworkConstantDefinition.URL_UFIT_TRAINER_ALBUM_UPLOAD, 1), "viewer")
                                         .addToBackStack("viewer").commit();
 //                        (new AsyncAlbumDelete()).execute(new JSONObject().put("_aid",items.get(position).getString("_aid")));
                     } catch (Exception e) {
@@ -115,7 +122,8 @@ public class UFitTrainerImageRCV extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<JSONObject> jsonObjects) {
             super.onPostExecute(jsonObjects);
-            rv.setAdapter(new UFitTrainerImageRCVAdapter(jsonObjects));
+            adapter = new UFitTrainerImageRCVAdapter(jsonObjects);
+            rv.setAdapter(adapter);
         }
     }
 

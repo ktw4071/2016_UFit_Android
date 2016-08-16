@@ -13,4 +13,18 @@
     <string name="uf_login_choice">트레이너와 일반회원을 선택해주세요</string>
     <string name="uf_trainer">트레이너</string>
     <string name="uf_member">일반회원</string>
+    <string name="uf_member_profile_weight">체중변화</string>
+    <string name="uf_member_profile_workout_level">운동레벨</string>
+    <string name="uf_member_profile_size">사이즈달성</string>
+    <string name="uf_pm">오후</string>
+    <string name="uf_am">오전</string>
+    <string name="workout_part_chest">가슴</string>
+    <string name="workout_part_back">등</string>
+    <string name="workout_part_shoulder">어깨</string>
+    <string name="workout_part_arm">팔</string>
+    <string name="workout_part_leg">하체</string>
+    <string name="workout_part_abs">복근</string>
+    <string name="workout_part_run">유산소</string>
+    <string name="workout_part_stretch">스트레칭</string>
+    <string name="workout_part_rope">줄넘기</string>]
 </resources>

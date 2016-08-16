@@ -28,7 +28,8 @@ public class UFitUserProfile_DetailSizeCard extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView)inflater.inflate(R.layout.ufit_fragment_recycler_view, container, false);
         UFitUserProfile_DetailSizeCardAdapter rcv = new UFitUserProfile_DetailSizeCardAdapter();
-        LinearLayoutManager llm = new LinearLayoutManager(UFitApplication.getUFitContext());/*{
+        LinearLayoutManager llm = new LinearLayoutManager(UFitApplication.getUFitContext());
+        /*{
             @Override
             public boolean canScrollVertically() {
                 return false;

@@ -10,9 +10,13 @@ import org.json.JSONObject;
  * Created by ccei on 2016-08-03.
  */
 public class UFitEntityObject {
+    public int _zid, _chest, _thigh, _calf, _forearm, _waist;
+    public String _date;
+    public int _value;
+    public int _wid;
     public int _mid;
     public int _sid;
-    public int _height, _initial, _goal;
+    public int _height, _initial, _goal, _level, _achieve, _weight;
     public String _memo;
     public String _image;
     public String _name;
@@ -113,7 +117,15 @@ public class UFitEntityObject {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+            }
+            case 6 : {
+                try {
+                    this._name = jsonObject.getString("_name");
+                    this._thumbnail = jsonObject.getString("_thumbnail");
+                    this._image = jsonObject.getString("_image");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

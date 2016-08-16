@@ -48,7 +48,6 @@
                 android:id="@+id/uf_left_headtext"
                 android:layout_marginTop="27dp"
                 android:textSize="19sp"
-                android:text="김비만"
                 android:layout_gravity="center"
                 android:textColor="#ffffff"/>
         </LinearLayout>

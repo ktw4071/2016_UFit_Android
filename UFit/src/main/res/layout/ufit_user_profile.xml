@@ -32,9 +32,9 @@
                         android:id="@+id/uf_user_profile_img"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/alf"
                         android:layout_margin="16dp"/>
                     <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/uf_user_profile_img_edit"
                         android:src="@drawable/back"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
@@ -43,16 +43,19 @@
                         android:layout_alignEnd="@+id/uf_user_profile_img" />
                 </RelativeLayout>
                 <TextView
+                    android:id="@+id/member_profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
                     android:layout_margin="4dp"/>
                 <TextView
+                    android:id="@+id/member_profile_birthdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1940.07.12"
                     android:layout_margin="4dp"/>
                 <TextView
+                    android:id="@+id/member_profile_phonenumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="010-9932-3549"
@@ -63,33 +66,109 @@
                 android:layout_height="3dp"
                 android:background="#000000"/>
             <LinearLayout
+                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="111dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/uf_user_circleprogress">
-                <com.github.lzyzsd.circleprogress.DonutProgress
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    custom:donut_progress="75"
-                    custom:donut_finished_color="#214193"
-                    custom:donut_unfinished_color="#ffffff" />
-                <com.github.lzyzsd.circleprogress.DonutProgress
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    custom:donut_progress="36"
-                    custom:donut_finished_color="#F78C02"
-                    custom:donut_unfinished_color="#ffffff" />
-                <com.github.lzyzsd.circleprogress.DonutProgress
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    custom:donut_progress="55"
-                    custom:donut_finished_color="#A3CC80"
-                    custom:donut_unfinished_color="#ffffff" />
 
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/uf_member_profile_weight"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <FrameLayout
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/uf_member_profile_weight_value"
+                            android:textColor="#48b6c9"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.github.lzyzsd.circleprogress.DonutProgress
+                            android:layout_gravity="center"
+                            android:id="@+id/donut_process_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            custom:donut_text_color="@android:color/transparent"
+                            custom:donut_finished_color="#48b6c9"
+                            custom:donut_unfinished_color="#e0e0e0" />
+                    </FrameLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/uf_member_profile_workout_level"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <FrameLayout
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/uf_member_profile_workout_level_value"
+                            android:textColor="#f78c02"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.github.lzyzsd.circleprogress.DonutProgress
+                            android:layout_gravity="center"
+                            android:id="@+id/donut_process_workout_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            custom:donut_text_color="@android:color/transparent"
+                            custom:donut_finished_color="#f78c02"
+                            custom:donut_unfinished_color="#e0e0e0" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="@string/uf_member_profile_size"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <FrameLayout
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/uf_member_profile_size_value"
+                            android:textColor="#a3cc80"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+                        <com.github.lzyzsd.circleprogress.DonutProgress
+                            android:layout_gravity="center"
+                            android:id="@+id/donut_process_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            custom:donut_text_color="@android:color/transparent"
+                            custom:donut_finished_color="#a3cc80"
+                            custom:donut_unfinished_color="#e0e0e0" />
+                    </FrameLayout>
+
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"

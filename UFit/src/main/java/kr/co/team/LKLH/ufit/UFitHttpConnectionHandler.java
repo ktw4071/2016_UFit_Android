@@ -15,6 +15,94 @@ import java.util.ArrayList;
  * Created by ccei on 2016-08-03.
  */
 public class UFitHttpConnectionHandler {
+    // 멤버 몸무게 라인그래프 기록
+    public static ArrayList<UFitEntityObject> memberProfileWeightLineGraph(String _mid, String _from, String _to) {
+        HttpURLConnection urlCon = null;
+        BufferedReader jsonStreamData = null;
+        ArrayList<UFitEntityObject> MainList = null;
+
+        try {
+            urlCon = UFitHttpURLConnectionManager.getHttpURLConnection(UFitNetworkConstantDefinition.URL_UFit_Member_Profile_Weight_Line_Graph + "_mid=" + _mid + "&_from=" + _from + "&_to=" + _to, "GET");
+            jsonStreamData = new BufferedReader(new InputStreamReader(urlCon.getInputStream()));
+            String line = "";
+            StringBuilder buf = new StringBuilder();
+
+
+            while ((line = jsonStreamData.readLine()) != null) {
+                buf.append(line);
+            }
+
+            MainList = UFitJSONParseHandler.memberProfileWeightLineGraph(buf);
+            Log.i("메인리스트 in COnnHandler", MainList + "");
+//            return MainList;
+
+        } catch (IOException ioe) {
+            Log.e("8888888888888888888", ioe.toString());
+        } finally {
+            UFitHttpURLConnectionManager.setDismissConnection(urlCon, jsonStreamData, null);
+        }
+
+        return MainList;
+    }
+
+    // 멤버 신체사이즈
+    public static ArrayList<UFitEntityObject> memberProfileDetailBodySize(String _mid, String _from, String _to) {
+        HttpURLConnection urlCon = null;
+        BufferedReader jsonStreamData = null;
+        ArrayList<UFitEntityObject> MainList = null;
+
+        try {
+            urlCon = UFitHttpURLConnectionManager.getHttpURLConnection(UFitNetworkConstantDefinition.URL_UFit_Member_Profile_Detail_Body_Size + "_mid=" + _mid + "&_from=" + _from + "&_to=" + _to, "GET");
+            jsonStreamData = new BufferedReader(new InputStreamReader(urlCon.getInputStream()));
+            String line = "";
+            StringBuilder buf = new StringBuilder();
+
+
+            while ((line = jsonStreamData.readLine()) != null) {
+                buf.append(line);
+            }
+
+            MainList = UFitJSONParseHandler.memberProfileDetailBodySize(buf);
+            Log.i("메인리스트 in COnnHandler", MainList + "");
+//            return MainList;
+
+        } catch (IOException ioe) {
+            Log.e("8888888888888888888", ioe.toString());
+        } finally {
+            UFitHttpURLConnectionManager.setDismissConnection(urlCon, jsonStreamData, null);
+        }
+
+        return MainList;
+    }
+
+    // 멤버 프로필
+    public static UFitEntityObject memberProfile(int _mid){
+        HttpURLConnection urlCon = null;
+        BufferedReader jsonStreamData = null;
+        UFitEntityObject uFitEntityObject = null;
+        try {
+            urlCon = UFitHttpURLConnectionManager.getHttpURLConnection(UFitNetworkConstantDefinition.URL_UFit_Member_Profile + "_mid=" + _mid, "GET");
+            jsonStreamData = new BufferedReader(new InputStreamReader(urlCon.getInputStream()));
+            String line = "";
+            StringBuilder buf = new StringBuilder();
+
+
+            while ((line = jsonStreamData.readLine()) != null) {
+                buf.append(line);
+            }
+
+            uFitEntityObject = UFitJSONParseHandler.memberProfile(buf);
+            Log.i("멤버프로필 in COnnHandler", uFitEntityObject + "");
+//            return MainList;
+
+        } catch (IOException ioe) {
+            Log.e("8888888888888888888", ioe.toString());
+        } finally {
+            UFitHttpURLConnectionManager.setDismissConnection(urlCon, jsonStreamData, null);
+        }
+
+        return uFitEntityObject;
+    }
 
     // 멤버 - 그달의 스케쥴 표시.
 

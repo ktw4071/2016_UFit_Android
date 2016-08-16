@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:layout_width="match_parent"
+    card_view:cardCornerRadius="5dp">
+
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rulerman"
+            android:layout_centerInParent="true" />
+
+        <EditText
+            android:text="가슴"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_size_chest" />
+
+        <EditText
+            android:text="허벅지"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/detail_size_thigh"/>
+
+        <EditText
+            android:text="종아리"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/detail_size_calf"/>
+
+        <EditText
+            android:text="허리"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/image"
+            android:layout_toEndOf="@+id/image"
+            android:id="@+id/detail_size_waist" />
+
+        <EditText
+            android:text="팔뚝"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/image"
+            android:layout_toEndOf="@+id/image"
+            android:id="@+id/detail_size_forearm"/>
+
+        <EditText
+            android:text="날짜"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_size_date"
+            android:layout_below="@+id/image"
+            android:layout_centerHorizontal="true" />
+
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

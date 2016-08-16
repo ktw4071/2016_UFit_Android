@@ -38,9 +38,12 @@ public class MemberItemAdapter extends RecyclerView.Adapter<MemberItemAdapter.Vi
     public MemberItemAdapter(ArrayList<UFitEntityObject> memberListObject) {
         this.memberListObject = memberListObject;
 
-    }public MemberItemAdapter(Context context, ArrayList<UFitEntityObject> memberListObject, String activityname) {
+    }
+    public MemberItemAdapter(Context context, ArrayList<UFitEntityObject> memberListObject, String activityname) {
         this.memberListObject = memberListObject;
+        Log.i("leelog actina", activityname);
         if(activityname == "UFitManageSchedule"){
+            Log.e("leelog", "123123");
             owner_manageschedule = (UFitManageSchedule)context;
         }
         else if(activityname == "UFitMainActivity"){
@@ -73,9 +76,10 @@ public class MemberItemAdapter extends RecyclerView.Adapter<MemberItemAdapter.Vi
                 public void onClick(View view) {
                     Intent intent = new Intent(UFitApplication.getUFitContext(), UFitUserProfile.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Log.e("클릭한 유저 _mid", "" + member._mid);
                     intent.putExtra("_mid", member._mid);
-                    intent.putExtra("_name", member._name);
-                    intent.putExtra("_thumbnail", member._thumbnail);
+//                    intent.putExtra("_name", member._name);
+//                    intent.putExtra("_thumbnail", member._thumbnail);
                     UFitApplication.getUFitContext().startActivity(intent);
                 }
             });

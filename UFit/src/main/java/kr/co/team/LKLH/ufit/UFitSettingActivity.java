@@ -2,6 +2,7 @@ package kr.co.team.LKLH.ufit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -57,6 +58,13 @@ public class UFitSettingActivity extends AppCompatActivity {
                     notifyToggle.setImageResource(R.drawable.btn_off);
                     NotifyState = false;
                 }
+            }
+        });
+        findViewById(R.id.setting_mail_to_dev).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 2016-08-16 개발자 메일 진짜 메일주소로 수정하기
+                startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:sdsd4564@gmail.com")));
             }
         });
     }

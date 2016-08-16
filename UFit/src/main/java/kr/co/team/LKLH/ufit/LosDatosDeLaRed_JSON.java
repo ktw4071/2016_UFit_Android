@@ -119,7 +119,7 @@ public class LosDatosDeLaRed_JSON {
         }
         return "fail";
     }
-    public String LosDatosDeLaRed_MPFD_JSON(int typecode, String url, ArrayList<UFitImageUploadHelper.UpLoadValueObject>[] items) {
+    public String LosDatosDeLaRed_MPFD_JSON(int typecode, String url,int mid, JSONObject returnJSON, ArrayList<UFitImageUploadHelper.UpLoadValueObject>[] items) {
         client = new OkHttpClient.Builder()
                                  .connectTimeout(30, TimeUnit.SECONDS)
                                  .readTimeout(15, TimeUnit.SECONDS)
@@ -128,6 +128,7 @@ public class LosDatosDeLaRed_JSON {
         builder.setType(MultipartBody.FORM);
         for (int i = 0; i < items[0].size(); i++) {
             File file = items[0].get(i).file;
+            builder.addFormDataPart("_mid", mid+"");
             builder.addFormDataPart("_image", file.getName(), RequestBody.create(IMAGE_MIME_TYPE, file));
         }
 
@@ -151,14 +152,17 @@ public class LosDatosDeLaRed_JSON {
         try {
             Log.e(TAG, "찍혀라 얍");
             response = client.newCall(request).execute();
-            Log.e(TAG, "찍혀라 얍");
+            jsonArray = (new JSONObject(response.body().string())).getJSONArray("data");
+            Log.e(TAG, jsonArray.toString());
+            Log.e(TAG, jsonArray.getJSONObject(0).toString());
+            returnJSON.put("_thumbnail", jsonArray.getJSONObject(0).getString("_thumbnail"));
             boolean flag = response.isSuccessful();
             //응답 코드 200등등
             int responseCode = response.code();
             Log.e(TAG, responseCode+"");
             if (flag) {
                 Log.e("response결과", responseCode + "---" + response.message()); //읃답에 대한 메세지(OK)
-                Log.e("response응답바디", response.body().string()); //json으로 변신
+//                Log.e("response응답바디", response.body().string()); //json으로 변신
                 return "success";
             }
 

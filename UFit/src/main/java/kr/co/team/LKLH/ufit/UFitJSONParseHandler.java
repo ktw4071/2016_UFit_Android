@@ -12,6 +12,150 @@ import java.util.ArrayList;
  */
 public class UFitJSONParseHandler {
 
+
+    public static ArrayList<UFitEntityObject> memberProfileWeightLineGraph(StringBuilder buf){
+        ArrayList<UFitEntityObject> json_main_list = null;
+        JSONObject mainobj = null;
+        JSONArray mainlist = null;
+        int size;
+
+        try{
+            mainobj = new JSONObject(buf.toString());
+            mainlist = mainobj.getJSONArray("data");
+            size = mainobj.getInt("total");
+            json_main_list = new ArrayList<UFitEntityObject>(size);
+
+            for(int i = 0;  i < size; i++){
+                Log.i("array 길이", "" + mainlist.length());
+                Log.i("파스핸들러 mainlist", "" + mainlist);
+                UFitEntityObject entity = new UFitEntityObject();
+                JSONObject listOB = mainlist.getJSONObject(i);
+                Log.i("파스핸들러&listOB", "" + listOB);
+
+                entity._date = listOB.getString("_date");
+                Log.i("파스핸들러&listOB&_date", "" + entity._date);
+
+                entity._wid = listOB.getInt("_wid");
+                Log.i("파스핸들러&listOB&_wid", "" + entity._wid);
+
+                entity._value = listOB.getInt("_value");
+                Log.i("파스핸들러&listOB&_value", "" + entity._value);
+
+                json_main_list.add(entity);
+            }
+
+        } catch(Exception e){
+            Log.e("ParseHandler/bodysize", e.toString());
+        }
+        Log.i("파스핸들러& bodysize", "" + json_main_list);
+
+        return json_main_list;
+    }
+
+    public static ArrayList<UFitEntityObject> memberProfileDetailBodySize(StringBuilder buf){
+        ArrayList<UFitEntityObject> json_main_list = null;
+        JSONObject mainobj = null;
+        JSONArray mainlist = null;
+        int size;
+
+        try{
+            mainobj = new JSONObject(buf.toString());
+            mainlist = mainobj.getJSONArray("data");
+            size = mainobj.getInt("total");
+            json_main_list = new ArrayList<UFitEntityObject>(size);
+
+            for(int i = 0;  i < size; i++){
+                Log.i("array 길이", "" + mainlist.length());
+                Log.i("파스핸들러 mainlist", "" + mainlist);
+                UFitEntityObject entity = new UFitEntityObject();
+                JSONObject listOB = mainlist.getJSONObject(i);
+                Log.i("파스핸들러&listOB", "" + listOB);
+
+                entity._date = listOB.getString("_date");
+                Log.i("파스핸들러&listOB&_date", "" + entity._date);
+
+                entity._zid = listOB.getInt("_zid");
+                Log.i("파스핸들러&listOB&_zid", "" + entity._zid);
+
+                entity._chest = listOB.getInt("_chest");
+                Log.i("파스핸들러&listOB&_chest", "" + entity._chest);
+
+                entity._thigh = listOB.getInt("_thigh");
+                Log.i("파스핸들러&listOB&_thigh", "" + entity._thigh);
+
+                entity._calf = listOB.getInt("_calf");
+                Log.i("파스핸들러&listOB&_calf", "" + entity._calf);
+
+                entity._forearm = listOB.getInt("_forearm");
+                Log.i("파스핸들러&listOB&_forearm", "" + entity._forearm);
+
+                entity._waist = listOB.getInt("_waist");
+                Log.i("파스핸들러&listOB&_waist", "" + entity._waist);
+
+                json_main_list.add(entity);
+            }
+
+        } catch(Exception e){
+            Log.e("ParseHandler/bodysize", e.toString());
+        }
+        Log.i("파스핸들러& bodysize", "" + json_main_list);
+
+        return json_main_list;
+    }
+
+    public static UFitEntityObject memberProfile(StringBuilder buf){
+        UFitEntityObject entity = null;
+        JSONObject mainobj = null;
+        JSONArray mainlist = null;
+
+        try{
+            mainobj = new JSONObject(buf.toString());
+            mainlist = mainobj.getJSONArray("data");
+            entity = new UFitEntityObject();
+
+            for(int i = 0;  i < mainlist.length(); i++){
+                JSONObject listOB = mainlist.getJSONObject(i);
+                Log.i("파스&memberprofi&object", "" + listOB);
+
+                entity._name = listOB.getString("_name");
+                Log.i("파스&memberprofi&_name", "" + entity._name);
+
+                entity._image = listOB.getString("_image");
+                Log.i("파스&memberprofi&_image", "" + entity._image);
+
+                entity._birth = listOB.getString("_birth");
+                Log.i("파스&memberprofi&_birth", "" + entity._birth);
+
+                entity._number = listOB.getString("_number");
+                Log.i("파스&memberprofi&_number", "" + entity._number);
+
+                entity._initial = listOB.getInt("_initial");
+                Log.i("파스&memberprofi&_init", "" + entity._initial);
+
+                entity._weight = listOB.getInt("_weight");
+                Log.i("파스&memberprofi&_weight", "" + entity._weight);
+
+                entity._goal = listOB.getInt("_goal");
+                Log.i("파스&memberprofi&_goal", "" + entity._goal);
+
+                entity._level = listOB.getInt("_level");
+                Log.i("파스&memberprofi&_level", "" + entity._level);
+
+                entity._achieve = listOB.getInt("_achieve");
+                Log.i("파스&memberprofi&_achieve", "" + entity._achieve);
+
+                entity._thumbnail = listOB.getString("_thumbnail");
+                Log.i("파스&memberprofi&_thumb", "" + entity._thumbnail);
+            }
+
+        } catch(Exception e){
+            Log.e("ParseHandler/MemberList", e.toString());
+        }
+        Log.i("파스&memberprofi&entity", "" + entity);
+
+        return entity;
+    }
+
     public static ArrayList<UFitCalendarCellEntityObject> getMemberMonthlySchedule(StringBuilder buf){
         ArrayList<UFitCalendarCellEntityObject> monthly_schedule= null;
         String result = null;

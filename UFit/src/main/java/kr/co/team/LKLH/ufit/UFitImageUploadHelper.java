@@ -4,6 +4,7 @@ package kr.co.team.LKLH.ufit;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,10 +21,18 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,9 +45,8 @@ public class UFitImageUploadHelper extends AppCompatActivity {
     private static final String TAG = "UFitImageUploadHelper";
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
-    private static final int CROP_FROM_CAMERA = 2;
-    private ImageView mPhotoImageView;
     private ArrayList<UpLoadValueObject> upLoadfiles = new ArrayList<>();
+    private JSONObject jsonObject;
 
     class UpLoadValueObject {
         File file; //업로드할 파일
@@ -57,8 +65,6 @@ public class UFitImageUploadHelper extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getWindow().setLayout(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
-
-
 
         AlertDialog dialog = null;
         DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
@@ -228,7 +234,6 @@ public class UFitImageUploadHelper extends AppCompatActivity {
                     }
                 }
 //                cropIntent(currentSelectedUri);
-                (new AsyncTPImage()).execute(upLoadfiles);
                 break;
             }
 
@@ -240,20 +245,8 @@ public class UFitImageUploadHelper extends AppCompatActivity {
                 break;
             }
         }
+        (new AsyncTPImage()).execute(upLoadfiles);
     }
-    /*private  void  cropIntent(Uri cropUri){
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(cropUri, "image*//*");
-
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 300);
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("scale", true);
-        intent.putExtra("return-data", true);
-
-        startActivityForResult(intent, CROP_FROM_CAMERA);
-    }*/
     private boolean tempSavedBitmapFile(Bitmap tempBitmap) {
         boolean flag = false;
         try {
@@ -316,9 +309,10 @@ public class UFitImageUploadHelper extends AppCompatActivity {
         @Override
         protected String doInBackground(ArrayList<UFitImageUploadHelper.UpLoadValueObject>... arrayLists) {
             Intent asdintent = getIntent();
-            Log.e(TAG, asdintent.getStringExtra("url"));
+            jsonObject = new JSONObject();
             return (new LosDatosDeLaRed_JSON()).LosDatosDeLaRed_MPFD_JSON
-                    (asdintent.getIntExtra("code",1), asdintent.getStringExtra("url"), arrayLists);
+                    (asdintent.getIntExtra("code",1), asdintent.getStringExtra("url"),
+                            asdintent.getIntExtra("_mid", 1), jsonObject, arrayLists);
         }
 
 
@@ -338,9 +332,10 @@ public class UFitImageUploadHelper extends AppCompatActivity {
             }else{
                 Toast.makeText(UFitImageUploadHelper.this, "파일업로드에 실패했습니다", Toast.LENGTH_LONG).show();
             }
+        Intent receiveIntent = getIntent();
+        receiveIntent.putExtra("image", currentSelectedUri);
+        setResult(RESULT_OK, receiveIntent);
         finish();
-        startActivity(new Intent(UFitImageUploadHelper.this, UFitTranerProfileActivity.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         }
     }
 }

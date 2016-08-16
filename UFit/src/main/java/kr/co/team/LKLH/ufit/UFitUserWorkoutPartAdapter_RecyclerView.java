@@ -30,8 +30,48 @@ public class UFitUserWorkoutPartAdapter_RecyclerView extends RecyclerView.Adapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.workout_part_image.setImageResource(R.drawable.pic);
-        holder.workout_part_text.setText(String.valueOf(part[counter++]));
+//        holder.workout_part_image.setImageResource(R.drawable.pic);
+//        holder.workout_part_text.setText(String.valueOf(part[counter++]));
+        int workout_part = part[position];
+
+        switch(workout_part){
+            case 1 :
+                holder.workout_part_image.setImageResource(R.drawable.btn_chest_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_chest);
+                break;
+            case 2:
+                holder.workout_part_image.setImageResource(R.drawable.btn_back_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_back);
+                break;
+            case 4:
+                holder.workout_part_image.setImageResource(R.drawable.btn_shoulder_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_shoulder);
+                break;
+            case 8:
+                holder.workout_part_image.setImageResource(R.drawable.btn_arm_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_arm);
+                break;
+            case 16:
+                holder.workout_part_image.setImageResource(R.drawable.btn_leg_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_leg);
+                break;
+            case 32:
+                holder.workout_part_image.setImageResource(R.drawable.btn_abs_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_abs);
+                break;
+            case 64:
+                holder.workout_part_image.setImageResource(R.drawable.btn_run_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_run);
+                break;
+            case 128:
+                holder.workout_part_image.setImageResource(R.drawable.btn_stretch_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_stretch);
+                break;
+            case 256:
+                holder.workout_part_image.setImageResource(R.drawable.btn_rope_on_15);
+                holder.workout_part_text.setText(R.string.workout_part_rope);
+                break;
+        }
     }
 
     @Override

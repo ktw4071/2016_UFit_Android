@@ -38,11 +38,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UFitRightDrawRCV extends Fragment {
 
     RecyclerView rv;
-
+    UFitMainActivity owner;
 
     public static UFitRightDrawRCV newInstance() {
         UFitRightDrawRCV f = new UFitRightDrawRCV();
         return f;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        owner = (UFitMainActivity)getActivity();
     }
 
     @Override
@@ -146,6 +152,8 @@ public class UFitRightDrawRCV extends Fragment {
 
                     startActivity(new Intent(getActivity(), UFitUserProfile.class)
                                             .putExtra("_mid", items.get(position)._mid));
+                    holder.popupLayout.setVisibility(View.INVISIBLE);
+                    owner.drawlayout.closeDrawers();
                 }
             });
         }

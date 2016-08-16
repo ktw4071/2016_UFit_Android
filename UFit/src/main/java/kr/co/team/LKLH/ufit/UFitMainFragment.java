@@ -1,5 +1,6 @@
 package kr.co.team.LKLH.ufit;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,10 +42,12 @@ public class UFitMainFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    Context context;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.ufit_main_fragment, container, false);
+        context = getContext();
         memberListRecycler = (RecyclerView)view.findViewById(R.id.main_recycler);
         memberListRecycler.setLayoutManager(mLayoutManager);
         memberListRecycler.setAdapter(memberItemAdapter);
@@ -52,7 +55,7 @@ public class UFitMainFragment extends Fragment {
         return view;
     }
 
-    public static class TodayMemberList extends AsyncTask<String, Integer, ArrayList<UFitEntityObject>> {
+    public class TodayMemberList extends AsyncTask<String, Integer, ArrayList<UFitEntityObject>> {
 
 
         @Override
@@ -79,10 +82,9 @@ public class UFitMainFragment extends Fragment {
                 }
             }
 
-            MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(memberList);
+            MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(context, memberList, "UFitMainActivity");
             memberListRecycler.setAdapter(memberRecyclerViewAdapter);
             super.onPostExecute(memberList);
         }
-
     }
 }

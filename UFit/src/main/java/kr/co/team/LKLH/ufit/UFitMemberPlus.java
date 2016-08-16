@@ -59,7 +59,11 @@ public class UFitMemberPlus extends DialogFragment {
         memImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), UFitImageUploadHelper.class));
+                Intent intent = new Intent(new Intent(getActivity(), UFitImageUploadHelper.class));
+                intent.putExtra("url", UFitNetworkConstantDefinition.URL_UFIT_MEMBER_IMAGE);
+                intent.putExtra("code", 0);
+                intent.putExtra("from", String.valueOf(getActivity()));
+                startActivity(intent);
             }
         });
 

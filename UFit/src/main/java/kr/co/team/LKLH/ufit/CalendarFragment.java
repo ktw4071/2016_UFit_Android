@@ -1,5 +1,6 @@
 package kr.co.team.LKLH.ufit;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -67,12 +68,6 @@ public class CalendarFragment extends Fragment {
         return calendarFragment;
     }
 
-    public void circleToday(){
-
-    }
-
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         int maximumDay = super.getArguments().getInt("ThisMaximumDay");
@@ -82,9 +77,6 @@ public class CalendarFragment extends Fragment {
         if((month + 1)< 10){
             _month = "0" + (month + 1);
         }
-
-
-
         try {
             monthlySchedule = new TrainerMonthlySchedule().execute("1","" + year + _month + "01", "" + year + _month + maximumDay).get();
         } catch (InterruptedException e) {
@@ -96,10 +88,12 @@ public class CalendarFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    Context context;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        context = getContext();
         mRecycler = (RecyclerView)view.findViewById(R.id.recycler);
         memberListRecycler = (RecyclerView)getActivity().findViewById(R.id.ufit_manage_schedule_recycleview);
 
@@ -122,8 +116,6 @@ public class CalendarFragment extends Fragment {
 //        mAdapter = new DaysCellAdapter(super.getContext(), maximumDay, startDay, monthlySchedule);
         mAdapter = new DaysCellAdapter(super.getContext(), maximumDay, startDay, monthlySchedule);
         mRecycler.setAdapter(mAdapter);
-
-
 
         final GestureDetector mGestureDetector = new GestureDetector(super.getContext(), new GestureDetector.SimpleOnGestureListener(){
             @Override
@@ -213,10 +205,6 @@ public class CalendarFragment extends Fragment {
                 return false;
             }
 
-
-
-
-
             @Override
             public void onTouchEvent(RecyclerView rv, MotionEvent e) {
 
@@ -263,7 +251,7 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    public static class SelectedDayMemberList extends AsyncTask<String, Integer, ArrayList<UFitEntityObject>> {
+    public class SelectedDayMemberList extends AsyncTask<String, Integer, ArrayList<UFitEntityObject>> {
 
 
         @Override
@@ -290,7 +278,7 @@ public class CalendarFragment extends Fragment {
                 }
             }
 
-            MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(memberList);
+            MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(context, memberList, "UFitManageSchedule");
             memberListRecycler.setAdapter(memberRecyclerViewAdapter);
 
             super.onPostExecute(memberList);

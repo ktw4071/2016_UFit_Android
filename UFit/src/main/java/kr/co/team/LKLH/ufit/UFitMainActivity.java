@@ -22,10 +22,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.tsengvn.typekit.TypekitContextWrapper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UFitMainActivity extends AppCompatActivity implements MemberItemAdapter.DeleteMemberCallback {
@@ -34,7 +40,8 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     Toolbar toolbar;
     ImageView toolbarLeft, toolbarRight;
     ImageView manageSchedule, drawerClose;
-    TextView toolbarHead, calendarDate;
+    TextView toolbarHead, calendarDate, leftHeadName;
+    CircleImageView leftHeadImg;
     Intent intent;
     Calendar calendar = Calendar.getInstance();
     int currentPosition;
@@ -43,6 +50,7 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     int this_today= calendar.get(Calendar.DATE);
     int this_maxday=calendar.getActualMaximum(calendar.DAY_OF_MONTH);
     boolean member_deleted;
+    JSONObject jsonObject;
     @Override
     public void deleteMethodCallBack(final ArrayList<UFitEntityObject> list, final UFitEntityObject object, final MemberItemAdapter adapter) {
 
@@ -96,28 +104,29 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ufit_activity_main);
-
+        (new AsyncMainTrainerData()).execute();
+        jsonObject = new JSONObject();
         // 드로우레이아웃
         drawlayout = (DrawerLayout)findViewById(R.id.uf_left_drawer);
         drawerClose = (ImageView)findViewById(R.id.drawer_close);
 
-
+        manageSchedule = (ImageView)findViewById(R.id.uf_schedule_fab) ;
         //툴바 설정
         toolbar = (Toolbar) findViewById(R.id.uf_main_toolbar);
         setSupportActionBar(toolbar);
-
         toolbarHead = (TextView)findViewById(R.id.uf_toolbar_head);
-        toolbarHead.setText("김근육");
         toolbarLeft = (ImageView)findViewById(R.id.uf_toolbar_left);
         toolbarRight= (ImageView)findViewById(R.id.uf_toolbar_right);
         toolbarLeft.setImageResource(R.drawable.btn_menu);
         toolbarRight.setImageResource(R.drawable.btn_menu2);
         setupUIforRightDraw(findViewById(R.id.uf_left_drawer));
+
+        // Right Draw, 트레이너의 회원 목록 생성
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.uf_right_menu, UFitRightDrawRCV.newInstance())
                 .commit();
-
-
+        leftHeadImg = (CircleImageView)findViewById(R.id.uf_left_headimg);
+        leftHeadName= (TextView)findViewById(R.id.uf_left_headtext);
 
         // 뷰페이저 설정
         final ViewPager viewPager = (ViewPager)findViewById(R.id.uf_schedule_viewpager);
@@ -157,8 +166,6 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
-
-
     }
 
     @Override
@@ -191,6 +198,15 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
                 intent = new Intent(UFitMainActivity.this, UFitTranerProfileActivity.class);
                 startActivity(intent);
                 drawlayout.closeDrawer(GravityCompat.START);
+            }
+        });
+        leftHeadImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mySerializableData serializableData = new mySerializableData();
+                serializableData.mCircleImageView = leftHeadImg;
+                getSupportFragmentManager().beginTransaction().add(UFitImageViewer.newInstance
+                        (serializableData, jsonObject, UFitNetworkConstantDefinition.URL_UFIT_TRAINER_IMAGE_UPLOAD, 0), "tr").addToBackStack("tr").commit();
             }
         });
         //트레이너 메뉴 스케줄 관리
@@ -234,7 +250,6 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
             }
         });
         // 플로팅 액션 버튼 -> 스케쥴 관리
-        manageSchedule = (ImageView)findViewById(R.id.uf_schedule_fab) ;
         manageSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -266,6 +281,31 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
         }
     }
 
+    private class AsyncMainTrainerData extends AsyncTask<Void, Void, ArrayList<UFitEntityObject>> {
+        @Override
+        protected ArrayList<UFitEntityObject> doInBackground(Void... voids) {
+            return new LosDatosDeLaRed_JSON().LosDatosDeLaRed_GET_JSON
+                    (UFitNetworkConstantDefinition.URL_UFIT_TRAINER_SIMPLE_PROFILE, "data" , 6);
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<UFitEntityObject> arrayList) {
+            super.onPostExecute(arrayList);
+            try {
+                jsonObject.put("_image", arrayList.get(0)._image);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            toolbarHead.setText(arrayList.get(0)._name);
+            leftHeadName.setText(arrayList.get(0)._name);
+            if (arrayList.get(0)._thumbnail != null) {
+                Glide.with(UFitApplication.getUFitContext()).load(arrayList.get(0)._thumbnail).into(leftHeadImg);
+            } else {
+                leftHeadImg.setImageResource(R.drawable.iiii);
+            }
+
+        }
+    }
     @Override
     public void onBackPressed() {
         if(drawlayout.isDrawerOpen(GravityCompat.START) || drawlayout.isDrawerOpen(GravityCompat.END)) {

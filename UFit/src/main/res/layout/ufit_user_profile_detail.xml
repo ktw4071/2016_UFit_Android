@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -12,68 +12,207 @@
         android:layout_height="match_parent">
         <include layout="@layout/ufit_toolbar"/>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
-            android:orientation="horizontal">
-            <com.github.lzyzsd.circleprogress.ArcProgress
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                custom:arc_progress="75"
-                custom:arc_finished_color="#214193"
-                custom:arc_unfinished_color="#ffffff"
-                custom:arc_bottom_text="Weight"/>
-            <com.github.lzyzsd.circleprogress.ArcProgress
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                custom:arc_progress="36"
-                custom:arc_finished_color="#F78C02"
-                custom:arc_unfinished_color="#ffffff"
-                custom:arc_bottom_text="Work Level"/>
-            <com.github.lzyzsd.circleprogress.ArcProgress
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                custom:arc_progress="55"
-                custom:arc_finished_color="#A3CC80"
-                custom:arc_unfinished_color="#ffffff"
-                custom:arc_bottom_text="Size Level"/>
-        </LinearLayout>
-    <View
-        android:layout_height="3dp"
-        android:layout_width="match_parent"
-        android:background="#000000">
-    </View>
-        <TextView
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="체중변화"
-            android:textSize="15sp"/>
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/rulerman" />
-        </HorizontalScrollView>
+            android:orientation="horizontal"
+            android:id="@+id/uf_user_circleprogress">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher"
-            android:layout_gravity="right"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="@string/uf_member_profile_weight"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/uf_member_profile_weight_value"
+                        android:textColor="#48b6c9"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:layout_gravity="center"
+                        android:id="@+id/donut_process_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        custom:donut_text_color="@android:color/transparent"
+                        custom:donut_finished_color="#48b6c9"
+                        custom:donut_unfinished_color="#e0e0e0" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="@string/uf_member_profile_workout_level"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/uf_member_profile_workout_level_value"
+                        android:textColor="#f78c02"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:layout_gravity="center"
+                        android:id="@+id/donut_process_workout_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        custom:donut_text_color="@android:color/transparent"
+                        custom:donut_finished_color="#f78c02"
+                        custom:donut_unfinished_color="#e0e0e0" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="@string/uf_member_profile_size"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/uf_member_profile_size_value"
+                        android:textColor="#a3cc80"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:layout_gravity="center"
+                        android:id="@+id/donut_process_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        custom:donut_text_color="@android:color/transparent"
+                        custom:donut_finished_color="#a3cc80"
+                        custom:donut_unfinished_color="#e0e0e0" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </LinearLayout>
         <View
             android:layout_height="3dp"
             android:layout_width="match_parent"
             android:background="#000000">
         </View>
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorMain"/>
+            android:background="@color/colorWhite">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="체중변화"
+                android:textSize="15sp"/>
+            <HorizontalScrollView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+                <view
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    class="im.dacer.androidcharts.LineView"
+                    android:id="@+id/lineView"/>
+            </HorizontalScrollView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_launcher"
+                android:layout_gravity="bottom|right"/>
+        </FrameLayout>
+
+        <View
+            android:layout_height="3dp"
+            android:layout_width="match_parent"
+            android:background="#000000">
+        </View>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:clipChildren="false">
+
+            <com.crystal.crystalrangeseekbar.widgets.BubbleThumbSeekbar
+                android:id="@+id/rangeSeekbar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:corner_radius="10"
+                app:min_value="1"
+                app:max_value="5"
+                app:steps="1"
+                app:bar_color="#90A4AE"
+                app:bar_highlight_color="#263238"
+                app:left_thumb_image="@drawable/thumb"
+                app:left_thumb_image_pressed="@drawable/thumb_pressed"
+                app:data_type="_integer"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/rangeSeekbar3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LV "
+                    android:textSize="20dp"
+                    android:textColor="#FF5722"/>
+
+                <TextView
+                    android:id="@+id/textMin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="20dp"
+                    android:textColor="#FF5722"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:text="힘내세요! 요즘 운동 강도가 높아지고 있습니다!"
+                android:focusable="false"
+                android:inputType="none"
+                android:id="@+id/rangeSeekbar_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/rangeSeekbar3"
+                android:layout_centerHorizontal="true"/>
+
+
+        </RelativeLayout>
         <View
             android:layout_height="3dp"
             android:layout_width="match_parent"
@@ -103,5 +242,15 @@
             android:orientation="vertical"
             android:layout_weight="1"/>
 
+        <me.crosswall.lib.coverflow.core.PagerContainer
+            android:id="@+id/pager_container"
+            android:layout_width="match_parent"
+            android:layout_height="220dp">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/uf_user_profile_detail_viewpager"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"/>
+        </me.crosswall.lib.coverflow.core.PagerContainer>
     </LinearLayout>
 </ScrollView>

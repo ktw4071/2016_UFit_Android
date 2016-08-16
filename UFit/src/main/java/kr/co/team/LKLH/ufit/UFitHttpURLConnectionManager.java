@@ -25,7 +25,7 @@ public class UFitHttpURLConnectionManager {
                 httpConnection.setConnectTimeout(15000);
 
                 }catch(Exception e){
-                    Log.e("그르르", "getHttpURLConnection() fail! ", e);
+                    Log.e("겟매니저실패", "getHttpURLConnection() fail! ", e);
                 }
                 return httpConnection;
             case "POST":
@@ -44,7 +44,7 @@ public class UFitHttpURLConnectionManager {
                     httpConnection.setUseCaches(false);
 
                 }catch(Exception e){
-                    Log.e("커넥션매니저실패", "getHttpURLConnection() fail! ", e);
+                    Log.e("포스트매니저실패", "getHttpURLConnection() fail! ", e);
                 }
                 return httpConnection;
 
@@ -64,7 +64,7 @@ public class UFitHttpURLConnectionManager {
                     httpConnection.setUseCaches(false);
 
                 }catch(Exception e){
-                    Log.e("커넥션매니저실패", "getHttpURLConnection() fail! ", e);
+                    Log.e("딜리트매니저실패", "getHttpURLConnection() fail! ", e);
                 }
                 return httpConnection;
             default:

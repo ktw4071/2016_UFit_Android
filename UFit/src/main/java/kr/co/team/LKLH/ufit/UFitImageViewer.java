@@ -1,6 +1,7 @@
 package kr.co.team.LKLH.ufit;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,7 +21,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Admin on 2016-08-12.
@@ -29,12 +34,16 @@ public class UFitImageViewer extends DialogFragment {
 
     JSONObject albumObj;
 
+    public UFitImageViewer() {}
 
-    static UFitImageViewer newInstance(JSONObject jsonObject, String url){
+
+    static UFitImageViewer newInstance(mySerializableData view, JSONObject jsonObject, String url, int code){
         UFitImageViewer f = new UFitImageViewer();
         Bundle b = new Bundle();
+        b.putSerializable("view", view);
         b.putString("album", jsonObject.toString());
         b.putString("url", url);
+        b.putInt("code", code);
         f.setArguments(b);
         return f;
     }
@@ -48,12 +57,16 @@ public class UFitImageViewer extends DialogFragment {
             Glide.with(UFitApplication.getUFitContext())
                     .load(albumObj.getString("_image"))
                     .into((ImageView) view.findViewById(R.id.uf_image_viewer));
+
+            // 뷰어 확인
             view.findViewById(R.id.viewer_check).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     getActivity().getSupportFragmentManager().beginTransaction().remove(UFitImageViewer.this).commit();
                 }
             });
+
+            // 뷰어 삭제버튼 리스너
             view.findViewById(R.id.viewer_delete).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -99,6 +112,7 @@ public class UFitImageViewer extends DialogFragment {
         return dialog;
     }
     private class AsyncAlbumDelete extends AsyncTask<JSONObject, Void, String> {
+        mySerializableData serializableData = (mySerializableData)getArguments().getSerializable("view");
         @Override
         protected String doInBackground(JSONObject... jsonObjects) {
             return (new LosDatosDeLaRed_JSON()).LosDatosDeLaRed_DELETE_JSON
@@ -109,8 +123,14 @@ public class UFitImageViewer extends DialogFragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             getActivity().getSupportFragmentManager().beginTransaction().remove(UFitImageViewer.this).commit();
-            getActivity().finish();
-            startActivity(new Intent(getActivity(), UFitTranerProfileActivity.class));
+
+            if (getArguments().getInt("code") == 0 || getArguments().getInt("code") == 2) {
+                serializableData.mCircleImageView.setImageResource(R.drawable.iiii);
+            } else {
+                // TODO: 2016-08-16 이거 어떻게 해야되죠
+                getActivity().finish();
+                startActivity(new Intent(getActivity(), UFitTranerProfileActivity.class));
+            }
         }
     }
 }
