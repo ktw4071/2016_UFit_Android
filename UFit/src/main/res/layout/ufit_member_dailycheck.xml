@@ -1,61 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#CCff2ab2">
+    android:background="@drawable/bgbgbgbgb">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
         android:id="@+id/explain_reg"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
         android:text="2016년 7월 25일"/>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="95dp"
-        android:layout_height="95dp"
-        android:src="@drawable/btn_edit"
-        android:elevation="@dimen/cardview_compat_inset_shadow"
-        android:layout_marginTop="101dp"
-        android:layout_marginLeft="30dp"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/pic"
-        android:elevation="2dp"
-        android:id="@+id/workparts_send"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="11dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"/>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mem_manage_regframe"
         android:orientation="vertical"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="130dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="26dp"
+        android:layout_gravity="bottom"
         android:paddingLeft="11dp"
         android:paddingRight="11dp"
         android:gravity="center"
-        android:background="@drawable/rounded_edittext">
+        android:background="@drawable/rounded_dialog">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="해당 날짜의 운동 스케줄을 추가해주세요"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorMain"
+            android:textSize="14sp"
+            android:text="@string/uf_daily_attendance"
+            android:layout_gravity="center_horizontal|top"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,8 +53,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_chest_off_15"
                     android:id="@+id/dc1"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,8 +69,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_back_off_15"
                     android:id="@+id/dc2"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,8 +85,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_shoulder_off_15"
                     android:id="@+id/dc3"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,8 +108,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_arm_off_15"
                     android:id="@+id/dc4"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,8 +124,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_leg_off_15"
                     android:id="@+id/dc5"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -163,8 +140,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_abs_off_15"
                     android:id="@+id/dc6"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -187,8 +163,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_run_off_15"
                     android:id="@+id/dc7"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -204,8 +179,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_stretch_off_15"
                     android:id="@+id/dc8"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -221,8 +195,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorMain"
-                    android:src="@drawable/pic"
+                    android:src="@drawable/btn_rope_off_15"
                     android:id="@+id/dc9"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -230,9 +203,20 @@
                     android:text="팔"/>
             </LinearLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
-
-</RelativeLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/workparts_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_miculsuck_14"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/btn_plus_memadd"
+        android:id="@+id/workparts_send"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="6dp" />
+</FrameLayout>

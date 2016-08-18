@@ -3,6 +3,8 @@ package kr.co.team.LKLH.ufit;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -92,12 +94,12 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                 //프로필 수정을 끝냄
                 if (!PROFIL_EDIT_FLAG) {
                     trName.setEnabled(true);
-                    trName.setBackgroundResource(R.drawable.rounded_edittext_black);
+                    trName.setBackgroundResource(android.R.drawable.edit_text);
                     trBirth.setEnabled(true);
                     trBirth.setText(trBirth.getText().toString().substring(0, 4)
                             + trBirth.getText().toString().substring(6, 8)
                             + trBirth.getText().toString().substring(10, 12));
-                    trBirth.setBackgroundResource(R.drawable.rounded_edittext_black);
+                    trBirth.setBackgroundResource(android.R.drawable.edit_text);
                     PROFIL_EDIT_FLAG = true;
                 //프로필 수정으로 진입
                 } else {
@@ -120,7 +122,9 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                     }
                     (new AsyncTPEdit()).execute(jsonTrainerData);
                     trName.setEnabled(false);
+                    trName.setBackgroundColor(Color.TRANSPARENT);
                     trBirth.setEnabled(false);
+                    trBirth.setBackgroundColor(Color.TRANSPARENT);
                     PROFIL_EDIT_FLAG = false;
                 }
             }
@@ -157,15 +161,18 @@ public class UFitTranerProfileActivity extends AppCompatActivity
         });
         // 프로필 이미지 확대
         findViewById(R.id.uf_tr_profile_img).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-                mySerializableData serializableData = new mySerializableData();
-                serializableData.mCircleImageView = trProFileImg;
-                getSupportFragmentManager().beginTransaction()
-                        .add(UFitImageViewer.newInstance
-                                (serializableData, jsonTrainerData, UFitNetworkConstantDefinition.URL_UFIT_TRAINER_IMAGE_UPLOAD, 0), "tpimage")
-                        .addToBackStack("tpimage").commit();
+                try {
+                    if (jsonTrainerData.getString("_thumbnail") != null) {
+                        Intent intent = new Intent(UFitTranerProfileActivity.this, new_UFitImageViewer.class);
+                        intent.putExtra("data", jsonTrainerData.toString());
+                        intent.putExtra("url", UFitNetworkConstantDefinition.URL_UFIT_TRAINER_IMAGE_UPLOAD);
+                        startActivityForResult(intent, 0);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -216,7 +223,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
             trGetMem.setText(arrayList.get(0)._memberTotal + "명");
             trLocation.setText(arrayList.get(0)._location1 + " " + arrayList.get(0)._location2);
             if (arrayList.get(0)._thumbnail == null) {
-                trProFileImg.setImageResource(R.drawable.iiii);
+                trProFileImg.setImageResource(R.drawable.avatar_m);
             } else {
                 Glide.with(UFitApplication.getUFitContext()).load(arrayList.get(0)._thumbnail).into(trProFileImg);
             }

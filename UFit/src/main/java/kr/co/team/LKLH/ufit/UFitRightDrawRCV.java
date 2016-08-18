@@ -99,7 +99,11 @@ public class UFitRightDrawRCV extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-            Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.memImg);
+            if (items.get(position)._thumbnail != null) {
+                Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.memImg);
+            } else {
+                holder.memImg.setImageResource(R.drawable.avatar_m);
+            }
             holder.memName.setText(items.get(position)._name);
             holder.moreMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -167,6 +171,7 @@ public class UFitRightDrawRCV extends Fragment {
         protected ArrayList<UFitEntityObject> doInBackground(Void... voids) {
             return (new LosDatosDeLaRed_JSON())
                     .LosDatosDeLaRed_GET_JSON(UFitNetworkConstantDefinition.URL_UFIT_TRAINER_MEMBER_LIST,"data", 1);
+
         }
 
         @Override

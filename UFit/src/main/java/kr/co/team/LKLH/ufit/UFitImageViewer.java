@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -33,14 +35,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UFitImageViewer extends DialogFragment {
 
     JSONObject albumObj;
-
     public UFitImageViewer() {}
 
-
-    static UFitImageViewer newInstance(mySerializableData view, JSONObject jsonObject, String url, int code){
+    static UFitImageViewer newInstance(JSONObject jsonObject, String url, int code){
         UFitImageViewer f = new UFitImageViewer();
         Bundle b = new Bundle();
-        b.putSerializable("view", view);
         b.putString("album", jsonObject.toString());
         b.putString("url", url);
         b.putInt("code", code);
@@ -106,7 +105,7 @@ public class UFitImageViewer extends DialogFragment {
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(root);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
 
         return dialog;
@@ -124,13 +123,13 @@ public class UFitImageViewer extends DialogFragment {
             super.onPostExecute(s);
             getActivity().getSupportFragmentManager().beginTransaction().remove(UFitImageViewer.this).commit();
 
-            if (getArguments().getInt("code") == 0 || getArguments().getInt("code") == 2) {
-                serializableData.mCircleImageView.setImageResource(R.drawable.iiii);
+            /*if (getArguments().getInt("code") == 0 || getArguments().getInt("code") == 2) {
+                ((CircleImageView)serializableData.mCircleImageView).setImageResource(R.drawable.iiii);
             } else {
                 // TODO: 2016-08-16 이거 어떻게 해야되죠
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), UFitTranerProfileActivity.class));
-            }
+            }*/
         }
     }
 }

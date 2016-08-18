@@ -57,10 +57,11 @@ public class UFitUserProfile_Detail extends AppCompatActivity {
     ViewPager viewPager;
     CoverFlowFragmentPagerAdapter coverFlowFragmentPagerAdapter = null;
     PagerContainer pagerContainer;
+    int currentItemSetter = 0;
 
     // 라인그래프
     LineView lineView;
-//
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -311,8 +312,11 @@ public class UFitUserProfile_Detail extends AppCompatActivity {
 
         public CoverFlowFragmentPagerAdapter(FragmentManager fm, int total, ArrayList<UFitEntityObject> sizeList) {
             super(fm);
-            this.total = total;
-            this.sizeList = sizeList;
+            if(total != 0 && sizeList != null){
+                this.total = total;
+                this.sizeList = sizeList;
+            }
+
         }
 
         @Override
@@ -321,13 +325,25 @@ public class UFitUserProfile_Detail extends AppCompatActivity {
 //                return UFitUserProfile_Detail_CoverFlow_Fragment.newInstance();
 //            }
 //            else{
-                return UFitUserProfile_Detail_CoverFlow_Fragment.newInstance(sizeList.get(position));
+//                return UFitUserProfile_Detail_CoverFlow_Fragment.newInstance(sizeList.get(position));
 //            }
-        }
+
+
+            if(position == total){
+                return UFitUserProfile_Detail_CoverFlow_Fragment.newInstance();
+            }
+            else
+                return UFitUserProfile_Detail_CoverFlow_Fragment.newInstance(sizeList.get(position));
+            }
+
 
         @Override
         public int getCount() {
-            return total;
+            if(total == 0){
+                return 1;
+            }
+            else
+                return total + 1;
         }
     }
 
@@ -423,10 +439,16 @@ public class UFitUserProfile_Detail extends AppCompatActivity {
                 }
             }
             Log.e("뭐22", "" + sizeListContainer);
-            coverFlowFragmentPagerAdapter = new CoverFlowFragmentPagerAdapter(getSupportFragmentManager(), sizeList.size(), sizeListContainer);
+
+            if(sizeList.size() > 0){
+                currentItemSetter = sizeList.size();
+            }
+            Log.e("커런트", currentItemSetter + "");
+            coverFlowFragmentPagerAdapter = new CoverFlowFragmentPagerAdapter(getSupportFragmentManager(), currentItemSetter, sizeListContainer);
             viewPager = pagerContainer.getViewPager();
-            viewPager.setOffscreenPageLimit(5);
             viewPager.setAdapter(coverFlowFragmentPagerAdapter);
+            viewPager.setCurrentItem(0);
+            viewPager.setOffscreenPageLimit(5);
 
             viewPager.post(new Runnable() {
                 @Override public void run() {

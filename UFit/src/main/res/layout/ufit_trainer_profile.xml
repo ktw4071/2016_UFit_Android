@@ -44,19 +44,22 @@
                 </RelativeLayout>
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/app_name"
                     android:enabled="false"
                     android:background="@null"
                     android:paddingRight="8dp"
                     android:paddingLeft="8dp"
                     android:id="@+id/trainer_name"
-                    android:layout_marginBottom="19dp"
+                    android:layout_marginBottom="10dp"
                     android:textColor="@color/colorBlack"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:maxLines="1"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:background="@null"
                     android:text="1940.07.12"
                     android:textColor="@color/colorBlack"
@@ -87,7 +90,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorGgrey"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -124,7 +129,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorGgrey"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -144,7 +151,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/><!--구분선-->
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorGgrey"/><!--구분선-->
             <ImageView
                 android:id="@+id/uf_trainer_album_edit"
                 android:layout_width="wrap_content"

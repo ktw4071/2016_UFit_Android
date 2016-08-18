@@ -1,239 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
     <include layout="@layout/ufit_toolbar"/>
-    <ScrollView
-        android:layout_height="match_parent"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <RelativeLayout
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/uf_user_profile_img"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="16dp"/>
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/uf_user_profile_img_edit"
-                        android:src="@drawable/back"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_alignBottom="@+id/uf_user_profile_img"
-                        android:layout_alignRight="@+id/uf_user_profile_img"
-                        android:layout_alignEnd="@+id/uf_user_profile_img" />
-                </RelativeLayout>
-                <TextView
-                    android:id="@+id/member_profile_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:layout_margin="4dp"/>
-                <TextView
-                    android:id="@+id/member_profile_birthdate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1940.07.12"
-                    android:layout_margin="4dp"/>
-                <TextView
-                    android:id="@+id/member_profile_phonenumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="010-9932-3549"
-                    android:layout_margin="4dp"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#000000"/>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="?android:attr/selectableItemBackground"
-                android:id="@+id/uf_user_circleprogress">
-
-                <LinearLayout
                     android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/uf_user_profile_img"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="16dp"/>
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/uf_user_profile_img_edit"
+                            android:src="@drawable/back"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignBottom="@+id/uf_user_profile_img"
+                            android:layout_alignRight="@+id/uf_user_profile_img"
+                            android:layout_alignEnd="@+id/uf_user_profile_img" />
+                    </RelativeLayout>
                     <TextView
-                        android:text="@string/uf_member_profile_weight"
-                        android:layout_gravity="center"
+                        android:id="@+id/member_profile_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <FrameLayout
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/uf_member_profile_weight_value"
-                            android:textColor="#48b6c9"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <com.github.lzyzsd.circleprogress.DonutProgress
-                            android:layout_gravity="center"
-                            android:id="@+id/donut_process_weight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            custom:donut_text_color="@android:color/transparent"
-                            custom:donut_finished_color="#48b6c9"
-                            custom:donut_unfinished_color="#e0e0e0" />
-                    </FrameLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:layout_margin="4dp"/>
                     <TextView
-                        android:text="@string/uf_member_profile_workout_level"
-                        android:layout_gravity="center"
+                        android:id="@+id/member_profile_birthdate"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <FrameLayout
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/uf_member_profile_workout_level_value"
-                            android:textColor="#f78c02"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <com.github.lzyzsd.circleprogress.DonutProgress
-                            android:layout_gravity="center"
-                            android:id="@+id/donut_process_workout_level"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            custom:donut_text_color="@android:color/transparent"
-                            custom:donut_finished_color="#f78c02"
-                            custom:donut_unfinished_color="#e0e0e0" />
-                    </FrameLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:text="1940.07.12"
+                        android:layout_margin="4dp"/>
                     <TextView
-                        android:text="@string/uf_member_profile_size"
-                        android:layout_gravity="center"
+                        android:id="@+id/member_profile_phonenumber"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <FrameLayout
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/uf_member_profile_size_value"
-                            android:textColor="#a3cc80"
-                            android:layout_gravity="center"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"/>
-                        <com.github.lzyzsd.circleprogress.DonutProgress
-                            android:layout_gravity="center"
-                            android:id="@+id/donut_process_size"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            custom:donut_text_color="@android:color/transparent"
-                            custom:donut_finished_color="#a3cc80"
-                            custom:donut_unfinished_color="#e0e0e0" />
-                    </FrameLayout>
-
+                        android:layout_height="wrap_content"
+                        android:text="010-9932-3549"
+                        android:layout_margin="4dp"/>
                 </LinearLayout>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#000000"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="출석 / 운동 스케줄"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#000000"/>
                 <LinearLayout
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/btn_topleft"/>
+                    android:background="?android:attr/selectableItemBackground"
+                    android:id="@+id/uf_user_circleprogress">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/uf_member_profile_weight"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <FrameLayout
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/uf_member_profile_weight_value"
+                                android:textColor="#48b6c9"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <com.github.lzyzsd.circleprogress.DonutProgress
+                                android:layout_gravity="center"
+                                android:id="@+id/donut_process_weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                custom:donut_text_color="@android:color/transparent"
+                                custom:donut_finished_color="#48b6c9"
+                                custom:donut_unfinished_color="#e0e0e0" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/uf_member_profile_workout_level"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <FrameLayout
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/uf_member_profile_workout_level_value"
+                                android:textColor="#f78c02"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <com.github.lzyzsd.circleprogress.DonutProgress
+                                android:layout_gravity="center"
+                                android:id="@+id/donut_process_workout_level"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                custom:donut_text_color="@android:color/transparent"
+                                custom:donut_finished_color="#f78c02"
+                                custom:donut_unfinished_color="#e0e0e0" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="@string/uf_member_profile_size"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <FrameLayout
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/uf_member_profile_size_value"
+                                android:textColor="#a3cc80"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"/>
+                            <com.github.lzyzsd.circleprogress.DonutProgress
+                                android:layout_gravity="center"
+                                android:id="@+id/donut_process_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                custom:donut_text_color="@android:color/transparent"
+                                custom:donut_finished_color="#a3cc80"
+                                custom:donut_unfinished_color="#e0e0e0" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#000000"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="출석 / 운동 스케줄"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/uf_member_calendar_date"
-                        android:text="2016. 08. 08"/>
-                    <ImageView
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/btn_topleft"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/uf_member_calendar_date"
+                            android:text="2016. 08. 08"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/btn_topright"/>
+                    </LinearLayout>
+
+                    <GridView
+                        android:background="@color/colorGray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/btn_topright"/>
+                        android:id="@+id/grid_view_monday_to_sunday"
+                        android:numColumns="7" />
+
+                    <!--  뷰페이저가 들어간 리사이클러뷰 프래그먼트가 들어가는 자리-->
+                    <android.support.v4.view.ViewPager
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:id="@+id/uf_member_calendar_viewpager">
+                    </android.support.v4.view.ViewPager>
+
                 </LinearLayout>
 
-                <GridView
-                    android:background="@color/colorGray"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#000000"/>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/grid_view_monday_to_sunday"
-                    android:numColumns="7" />
+                    android:id="@+id/today"
+                    android:text="2016.05.12"/>
 
-                <!--  뷰페이저가 들어간 리사이클러뷰 프래그먼트가 들어가는 자리-->
-                <android.support.v4.view.ViewPager
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:id="@+id/uf_member_calendar_viewpager">
-                </android.support.v4.view.ViewPager>
-                
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/workout_part_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+
+
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#000000"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/today"
-                android:text="2016.05.12"/>
+        </ScrollView>
+    <ImageView
+        android:id="@+id/member_add_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/btn_edit"
+        />
+    </FrameLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/workout_part_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-
-    </ScrollView>
 </LinearLayout>

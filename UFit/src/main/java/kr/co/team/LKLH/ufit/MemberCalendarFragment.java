@@ -35,25 +35,14 @@ public class MemberCalendarFragment extends Fragment {
     public static RecyclerView workoutPartRecyclerView;
     ArrayList<UFitCalendarCellEntityObject> uFitCalendarCellEntityObject;
 
-    public static MemberCalendarFragment newInstance(int year, int  month, int maximumDay, int startDay) {
+    public static MemberCalendarFragment newInstance(int year, int  month, int maximumDay, int startDay, int _mid) {
         MemberCalendarFragment memberCalendarFragment = new MemberCalendarFragment();
         Bundle args = new Bundle();
         args.putInt("ThisYear", year);
         args.putInt("ThisMonth", month);
         args.putInt("ThisMaximumDay", maximumDay);
         args.putInt("ThisStartDay", startDay);
-        memberCalendarFragment.setArguments(args);
-        return memberCalendarFragment;
-    }
-
-    public static MemberCalendarFragment newInstance(int year, int  month, int maximumDay, int startDay, int today) {
-        MemberCalendarFragment memberCalendarFragment = new MemberCalendarFragment();
-        Bundle args = new Bundle();
-        args.putInt("today", today);
-        args.putInt("ThisYear", year);
-        args.putInt("ThisMonth", month);
-        args.putInt("ThisMaximumDay", maximumDay);
-        args.putInt("ThisStartDay", startDay);
+        args.putInt("_mid", _mid);
         memberCalendarFragment.setArguments(args);
         return memberCalendarFragment;
     }
@@ -62,6 +51,7 @@ public class MemberCalendarFragment extends Fragment {
     int year;
     int month;
     int startDay;
+    int _mid;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +59,7 @@ public class MemberCalendarFragment extends Fragment {
         year = super.getArguments().getInt("ThisYear");
         month = super.getArguments().getInt("ThisMonth");
         startDay = super.getArguments().getInt("ThisStartDay");
+        _mid = getArguments().getInt("_mid");
         Log.i("leelog date max : ", maximumDay + "");
         Log.i("leelog date yr: ", year + "");
         Log.i("leelog date mt: ", month+ "");
@@ -82,7 +73,7 @@ public class MemberCalendarFragment extends Fragment {
         try {
             Log.i("leelog date121211: ", "1" + year + _month + "01" + year + _month + maximumDay);
 
-            uFitCalendarCellEntityObject = new MemberMonthlySchedule().execute("1","" + year + _month + "01", "" + year + _month + maximumDay).get();
+            uFitCalendarCellEntityObject = new MemberMonthlySchedule().execute(String.valueOf(_mid),"" + year + _month + "01", "" + year + _month + maximumDay).get();
             Log.e("어씽크 리턴",  "" + uFitCalendarCellEntityObject);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -126,11 +117,13 @@ public class MemberCalendarFragment extends Fragment {
                 View child = mRecycler.findChildViewUnder(e.getX(), e.getY());
                 if (child != null && mGestureDetector.onTouchEvent(e) && rv.getChildAdapterPosition(child) > startDay - 2) {
                     Log.i("클릭한 날짜", "" + (rv.getChildAdapterPosition(child) - startDay + 2));
-
                     if(OldView != null){
 
                         OldView.findViewById(R.id.todayCircle).setBackgroundResource(0);
                     }
+
+                    //플로팅 버튼 나타내기
+
 
                     //큰 오늘 선택 써클 표시
                     child.findViewById(R.id.todayCircle).setBackgroundResource(R.drawable.today_circle);

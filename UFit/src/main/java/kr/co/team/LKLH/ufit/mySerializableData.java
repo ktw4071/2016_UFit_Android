@@ -10,8 +10,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class mySerializableData implements Serializable {
     private static final long serialVersionUID = 12314192L;
 
-    public CircleImageView mCircleImageView = null;
+    public Object mCircleImageView = null;
 
-    public mySerializableData() {
+    public mySerializableData(Object mCircleImageView) {
+        this.mCircleImageView = mCircleImageView;
     }
 }

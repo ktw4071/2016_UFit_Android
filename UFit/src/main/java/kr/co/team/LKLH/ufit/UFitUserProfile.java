@@ -33,7 +33,7 @@ public class UFitUserProfile extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView tbHead, member_name, member_birthdate, member_phonenumber, uf_member_profile_weight_value, uf_member_profile_workout_level_value, uf_member_profile_size_value;
-    ImageView tbLeft, tbRight;
+    ImageView tbLeft, tbRight, member_add_attendance;
     CircleImageView profileImg;
     Intent intent;
     Timer timer;
@@ -56,7 +56,7 @@ public class UFitUserProfile extends AppCompatActivity {
     //달력부분
     GridView gridView;
     ViewPager ufitMemberCalendar;
-    MemberCalendarFragmentAdapter mFragmentAdapter = new MemberCalendarFragmentAdapter(getSupportFragmentManager(), this_year, this_month);
+    MemberCalendarFragmentAdapter mFragmentAdapter;
     TextView textView;
     TextView clickedDate;
 
@@ -82,7 +82,7 @@ public class UFitUserProfile extends AppCompatActivity {
 
         jsonObject = new JSONObject();
 
-
+        mFragmentAdapter = new MemberCalendarFragmentAdapter(getSupportFragmentManager(), this_year, this_month, _mid);
 //        name = intent.getExtras().getString("_mid");
 //        thumbnail = intent.getExtras().getString("_thumbnail");
 
@@ -166,7 +166,7 @@ public class UFitUserProfile extends AppCompatActivity {
         setSupportActionBar(toolbar);
         tbHead = (TextView) findViewById(R.id.uf_toolbar_head);
         tbLeft = (ImageView) findViewById(R.id.uf_toolbar_left);
-        tbLeft.setImageResource(R.drawable.btn_topleft);
+        tbLeft.setImageResource(R.drawable.btn_back);
         tbLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,8 +176,19 @@ public class UFitUserProfile extends AppCompatActivity {
         tbRight = (ImageView) findViewById(R.id.uf_toolbar_right);
         tbRight.setVisibility(View.INVISIBLE);
 
+        // 출석 체크 및 운동 종류 추가하기
+        member_add_attendance = (ImageView)findViewById(R.id.member_add_attendance);
+        member_add_attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String Date = clickedDate.getText().toString().substring(0, 4) + clickedDate.getText().toString().substring(6, 8) + clickedDate.getText().toString().substring(10, 12);
+                getSupportFragmentManager().beginTransaction().add(UFitMemberProfileDailyCheck.newInstance(Date, _mid), null).addToBackStack(null).commit();
+            }
+        });
 
 
+
+        // 유저 프로필 디테일로
         final LinearLayout userCircle = (LinearLayout) findViewById(R.id.uf_user_circleprogress);
         userCircle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,13 +223,17 @@ public class UFitUserProfile extends AppCompatActivity {
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mySerializableData serializableData = new mySerializableData();
-                serializableData.mCircleImageView = profileImg;
-                getSupportFragmentManager().beginTransaction()
-                                           .add(UFitImageViewer.newInstance(serializableData, jsonObject,
-                                                   UFitNetworkConstantDefinition.URL_UFIT_MEMBER_IMAGE, 2), "memImage")
-                                           .addToBackStack("memImage")
-                                           .commit();
+                try {
+                    if (jsonObject.getString("_image") != null) {
+                        Intent intent = new Intent(UFitUserProfile.this, new_UFitImageViewer.class);
+                        intent.putExtra("data", jsonObject.toString());
+                        intent.putExtra("url", UFitNetworkConstantDefinition.URL_UFIT_MEMBER_IMAGE);
+                        startActivityForResult(intent, 0);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
         // 유저 프로필 사진 수정
@@ -260,7 +275,7 @@ public class UFitUserProfile extends AppCompatActivity {
             member_birthdate.setText(uFitEntityObject._birth);
             member_phonenumber.setText(uFitEntityObject._number);
             if (uFitEntityObject._thumbnail == null) {
-                profileImg.setImageResource(R.drawable.iiii);
+                profileImg.setImageResource(R.drawable.avatar_m);
             } else {
                 Glide.with(UFitApplication.getUFitContext()).load(uFitEntityObject._thumbnail).into(profileImg);
             }
@@ -467,4 +482,8 @@ public class UFitUserProfile extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

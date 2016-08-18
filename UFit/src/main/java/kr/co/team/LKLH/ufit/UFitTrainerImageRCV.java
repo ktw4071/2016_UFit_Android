@@ -1,5 +1,6 @@
 package kr.co.team.LKLH.ufit;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -80,14 +82,12 @@ public class UFitTrainerImageRCV extends Fragment {
                 @Override
                 public void onClick(View view) {
                     try {
-
-                        getFragmentManager().beginTransaction().add(UFitImageViewer
-                                        .newInstance(null, items.get(position),
-                                                UFitNetworkConstantDefinition.URL_UFIT_TRAINER_ALBUM_UPLOAD, 1), "viewer")
-                                        .addToBackStack("viewer").commit();
-//                        (new AsyncAlbumDelete()).execute(new JSONObject().put("_aid",items.get(position).getString("_aid")));
+                        Intent intent = new Intent(getActivity(), new_UFitImageViewer.class);
+                        intent.putExtra("data", items.get(position).toString());
+                        intent.putExtra("url", UFitNetworkConstantDefinition.URL_UFIT_TRAINER_ALBUM_UPLOAD);
+                        startActivity(intent);
                     } catch (Exception e) {
-                        Log.e("Trainer Image RCV", e.toString());
+                        e.printStackTrace();
                     }
                 }
             });

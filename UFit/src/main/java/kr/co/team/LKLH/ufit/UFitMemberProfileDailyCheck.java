@@ -3,6 +3,7 @@ package kr.co.team.LKLH.ufit;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,15 +31,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class UFitMemberProfileDailyCheck extends DialogFragment {
 
-    CircleImageView cardio, rope, chest, back, lowbody, shoulder, arm, abs, stretch;
+    CircleImageView cardio, rope, chest, back, lowbody, shoulder, arm, abs, stretch, attendance;
     ImageView send;
     ArrayList<Integer> data = new ArrayList<>();
     JSONObject jsonObject;
-    JSONArray jsonArray;
 
-    static UFitMemberProfileDailyCheck newInstance() {
+    int _attendance = 0;
+
+    static UFitMemberProfileDailyCheck newInstance(String _date, int _mid) {
         UFitMemberProfileDailyCheck f = new UFitMemberProfileDailyCheck();
         Bundle b = new Bundle();
+        b.putString("_date", _date);
+        b.putInt("_mid", _mid);
         f.setArguments(b);
         return f;
     }
@@ -46,6 +50,7 @@ public class UFitMemberProfileDailyCheck extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int workpart = 0;
     }
 
     View.OnClickListener getListener(final int num, final CircleImageView image) {
@@ -55,29 +60,30 @@ public class UFitMemberProfileDailyCheck extends DialogFragment {
                 if (!data.contains(new Integer(num))) {
                     data.add(num);
                     switch (num) {
-                        case 1   : image.setImageResource(R.drawable.iiii);
-                        case 2   : image.setImageResource(R.drawable.iiii);
-                        case 4   : image.setImageResource(R.drawable.iiii);
-                        case 8   : image.setImageResource(R.drawable.iiii);
-                        case 16  : image.setImageResource(R.drawable.iiii);
-                        case 32  : image.setImageResource(R.drawable.iiii);
-                        case 64  : image.setImageResource(R.drawable.iiii);
-                        case 128 : image.setImageResource(R.drawable.iiii);
-                        case 256 : image.setImageResource(R.drawable.iiii);
+                        case 1   : image.setImageResource(R.drawable.btn_chest_on_15); break;
+                        case 2   : image.setImageResource(R.drawable.btn_back_on_15); break;
+                        case 4   : image.setImageResource(R.drawable.btn_shoulder_on_15); break;
+                        case 8   : image.setImageResource(R.drawable.btn_arm_on_15); break;
+                        case 16  : image.setImageResource(R.drawable.btn_leg_on_15); break;
+                        case 32  : image.setImageResource(R.drawable.btn_abs_on_15); break;
+                        case 64  : image.setImageResource(R.drawable.btn_run_on_15); break;
+                        case 128 : image.setImageResource(R.drawable.btn_stretch_on_15); break;
+                        case 256 : image.setImageResource(R.drawable.btn_rope_on_15); break;
                     }
                 } else {
-                    data.remove(new Integer(num));
-                    switch (num) {
-                        case 1   : image.setImageResource(R.drawable.pic);
-                        case 2   : image.setImageResource(R.drawable.pic);
-                        case 4   : image.setImageResource(R.drawable.pic);
-                        case 8   : image.setImageResource(R.drawable.pic);
-                        case 16  : image.setImageResource(R.drawable.pic);
-                        case 32  : image.setImageResource(R.drawable.pic);
-                        case 64  : image.setImageResource(R.drawable.pic);
-                        case 128 : image.setImageResource(R.drawable.pic);
-                        case 256 : image.setImageResource(R.drawable.pic);
-                    }
+                        data.remove(new Integer(num));
+                        switch (num) {
+                            case 1   : image.setImageResource(R.drawable.btn_chest_off_15); break;
+                            case 2   : image.setImageResource(R.drawable.btn_back_off_15); break;
+                            case 4   : image.setImageResource(R.drawable.btn_shoulder_off_15); break;
+                            case 8   : image.setImageResource(R.drawable.btn_arm_off_15); break;
+                            case 16  : image.setImageResource(R.drawable.btn_leg_off_15); break;
+                            case 32  : image.setImageResource(R.drawable.btn_abs_off_15); break;
+                            case 64  : image.setImageResource(R.drawable.btn_run_off_15); break;
+                            case 128 : image.setImageResource(R.drawable.btn_stretch_off_15); break;
+                            case 256 : image.setImageResource(R.drawable.btn_rope_off_15); break;
+
+                        }
                 }
             }
         };
@@ -97,8 +103,8 @@ public class UFitMemberProfileDailyCheck extends DialogFragment {
         abs     = (CircleImageView) view.findViewById(R.id.dc8);
         chest   = (CircleImageView) view.findViewById(R.id.dc9);
         send    = (ImageView)view.findViewById(R.id.workparts_send);
+        attendance=(CircleImageView)view.findViewById(R.id.workparts_attendance);
         jsonObject = new JSONObject();
-        jsonArray  = new JSONArray();
         arm.setOnClickListener(getListener(1, arm));
         cardio.setOnClickListener(getListener(2, cardio));
         rope.setOnClickListener(getListener(4, rope));
@@ -108,18 +114,40 @@ public class UFitMemberProfileDailyCheck extends DialogFragment {
         shoulder.setOnClickListener(getListener(64, shoulder));
         abs.setOnClickListener(getListener(128, abs));
         chest.setOnClickListener(getListener(256, chest));
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (_attendance == 0) {
+                    attendance.setImageResource(R.drawable.btn_culsuck_14);
+                    _attendance = 1;
+                } else {
+                    attendance.setImageResource(R.drawable.btn_miculsuck_14);
+                    _attendance = 0;
+                }
+            }
+        });
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(int i = 0 ; i < data.size(); i++) {
+                JSONArray jsonArray = new JSONArray();
+                for (int i = 0 ; i < data.size(); i++){
                     try {
-                        jsonArray.put(i, data.get(i));
-                    } catch (Exception e) {
+                        jsonArray.put(i, data.get(i).intValue());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } try {
-                    jsonObject.put("_part", jsonArray);
-                } catch (Exception e) {
                 }
+                try {
+                    jsonObject.put("_part", jsonArray);
+                    jsonObject.put("_attendance", _attendance);
+                    jsonObject.put("_date", getArguments().getString("_date"));
+                    Log.e("목소리", getArguments().getString("_date"));
+                    jsonObject.put("_mid", 2);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                new AsynDailyCheckMember().execute(jsonObject);
+                dismiss();
             }
         });
 
@@ -141,4 +169,17 @@ public class UFitMemberProfileDailyCheck extends DialogFragment {
 
         return dialog;
     }
+    private class AsynDailyCheckMember extends AsyncTask<JSONObject, Void, ArrayList<UFitEntityObject>> {
+        @Override
+        protected ArrayList<UFitEntityObject> doInBackground(JSONObject... jsonObjects) {
+            return new LosDatosDeLaRed_JSON().LosDatosDeLaRed_POST_JSON
+                    (jsonObjects, UFitNetworkConstantDefinition.URL_UFit_Member_Monthly_Schedule, 7, 0);
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<UFitEntityObject> arrayList) {
+            super.onPostExecute(arrayList);
+        }
+    }
+
 }

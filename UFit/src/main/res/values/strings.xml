@@ -26,5 +26,6 @@
     <string name="workout_part_abs">복근</string>
     <string name="workout_part_run">유산소</string>
     <string name="workout_part_stretch">스트레칭</string>
-    <string name="workout_part_rope">줄넘기</string>]
+    <string name="workout_part_rope">줄넘기</string>
+    <string name="uf_daily_attendance">해당 날짜의 운동 스케줄을 추가해주세요</string>
 </resources>

@@ -37,14 +37,6 @@ public class CalendarFragment extends Fragment {
     public static RecyclerView memberListRecycler;
     int[] monthlySchedule;
 
-
-
-    //    private Calendar today = Calendar.getInstance(Locale.getDefault());
-
-
-//    public CalendarFragment() {
-//    }
-
     public static CalendarFragment newInstance(int year, int  month, int maximumDay, int startDay) {
         CalendarFragment calendarFragment = new CalendarFragment();
         Bundle args = new Bundle();
@@ -101,19 +93,18 @@ public class CalendarFragment extends Fragment {
         final int year = super.getArguments().getInt("ThisYear");
         final int month = super.getArguments().getInt("ThisMonth");
         final int startDay = super.getArguments().getInt("ThisStartDay");
-//        final int[] monthlySchedule = super.getArguments().getIntArray("ThisMonthlySchedule");
+
 
         String _month = "" + (month + 1);
         if((month + 1)< 10){
             _month = "0" + (month + 1);
         }
 
-//        new TrainerMonthlySchedule().execute("1","" + year + _month + "01", "" + year + _month + maximumDay);
+
         Log.e("Cal_Frag_OnCreate", "" + monthlySchedule);
         mGM = new GridLayoutManager(super.getContext(), columnCount, 1, false);
         mRecycler.setLayoutManager(new GridLayoutManager(super.getContext(), columnCount, 1, false));
         mRecycler.addItemDecoration(new DividerItemDecoration(super.getContext(), 1));
-//        mAdapter = new DaysCellAdapter(super.getContext(), maximumDay, startDay, monthlySchedule);
         mAdapter = new DaysCellAdapter(super.getContext(), maximumDay, startDay, monthlySchedule);
         mRecycler.setAdapter(mAdapter);
 
@@ -124,14 +115,6 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-//        mRecycler.findViewHolderForAdapterPosition(10).itemView.performClick();
-
-//        mRecycler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mRecycler.scrollToPosition(10);
-//            }
-//        },300);
 
         mRecycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener(){
             @Override
@@ -143,16 +126,8 @@ public class CalendarFragment extends Fragment {
 
                     //날짜를 클릭하며 이동할때 전에 잡아둔 올드뷰의 써클(날짜선택)을 취소시킬때
                     if(OldView != null){
-
                         OldView.findViewById(R.id.todayCircle).setBackgroundResource(0);
                     }
-//                    child.setBackgroundColor(Color.parseColor("#FFFF00"));
-//                    child.setBackgroundResource(R.drawable.today_circle);
-
-
-                    // 작은 출석체크 점 표시.
-//                    ImageView test = (ImageView)child.findViewById(R.id.attend);
-//                    test.setImageResource(R.drawable.schedule_circle);
 
                     //큰 오늘 선택 써클 표시
                     child.findViewById(R.id.todayCircle).setBackgroundResource(R.drawable.today_circle);
@@ -164,20 +139,7 @@ public class CalendarFragment extends Fragment {
                     ArrayList<UFitEntityObject> MemberList = new ArrayList<UFitEntityObject>();
 
 
-//                  리싸이클러뷰 더미데이타 표현
-                    /*
-                    RecyclerView manage_schedule_recycleview = (RecyclerView) getActivity().findViewById(R.id.ufit_manage_schedule_recycleview);
-                    List<DummyDatePoooool> memberList = new ArrayList<>();
-                    for(int i = 0; i < (rv.getChildAdapterPosition(child) - startDay + 2); i++){
-                        DummyDatePoooool dummyDatePoooool = new DummyDatePoooool();
-                        dummyDatePoooool.setData(R.drawable.pic, "오늘회원님" + (i + 1), "2:" + i*2 + "pm");
-                        memberList.add(dummyDatePoooool);
-                    }
-                    MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(memberList);
-                    manage_schedule_recycleview.setAdapter(memberRecyclerViewAdapter);
-                    */
 
-                    //전에 클릭한 날짜를 지우기 위해 올드뷰를 종료전에 설정.
 
                     OldView = child;
 
@@ -215,30 +177,10 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-
-
-//        mRecycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-//            @Override
-//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-//                Toast.makeText(getContext(), "adfdsf", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//            }
-//        });
         return view;
     }
 
     class TrainerMonthlySchedule extends AsyncTask<String, Integer, int[]> {
-
-
         @Override
         protected int[] doInBackground(String... strings) {
             return UFitHttpConnectionHandler.mainlist(strings[0], strings[1], strings[2]);
@@ -252,8 +194,6 @@ public class CalendarFragment extends Fragment {
     }
 
     public class SelectedDayMemberList extends AsyncTask<String, Integer, ArrayList<UFitEntityObject>> {
-
-
         @Override
         protected ArrayList doInBackground(String... strings) {
             Log.i("who am i?","" + UFitHttpConnectionHandler.mainlist(strings[0], strings[1]));
@@ -277,7 +217,6 @@ public class CalendarFragment extends Fragment {
                     memberListContainer.add(d);
                 }
             }
-
             MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(context, memberList, "UFitManageSchedule");
             memberListRecycler.setAdapter(memberRecyclerViewAdapter);
 

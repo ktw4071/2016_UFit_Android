@@ -1,5 +1,6 @@
 package kr.co.team.LKLH.ufit;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -82,12 +83,24 @@ public class UFitMemberManagementRCV extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.memberImg);
+        public void onBindViewHolder(ViewHolder holder, final int position) {
+            if (items.get(position)._thumbnail != null) {
+                Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.memberImg);
+            } else {
+                holder.memberImg.setImageResource(R.drawable.avatar_m);
+            }
             holder.memName.setText(items.get(position)._name);
             holder.memberBirth.setText(items.get(position)._birth);
             holder.memberCall.setText(items.get(position)._number);
             holder.memClassDate.setText(items.get(position)._dayOfTheWeek);
+            /*holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(UFitApplication.getUFitContext(), UFitUserProfile.class);
+                    intent.putExtra("_mid", items.get(position)._mid);
+
+                }
+            });*/
         }
 
         @Override

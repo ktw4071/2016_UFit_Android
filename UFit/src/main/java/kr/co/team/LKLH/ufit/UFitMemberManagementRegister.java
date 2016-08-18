@@ -109,6 +109,8 @@ public class UFitMemberManagementRegister extends AppCompatActivity implements T
                 }
             }
         });
+
+        // 최종 스케줄 입력
         findViewById(R.id.schedule_send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,8 +155,16 @@ public class UFitMemberManagementRegister extends AppCompatActivity implements T
 
         @Override
         protected void onPostExecute(Integer integer) {
-
             super.onPostExecute(integer);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (memSelectDraw.isDrawerOpen(GravityCompat.END)) {
+            memSelectDraw.closeDrawer(GravityCompat.END);
+        } else {
+            super.onBackPressed();
         }
     }
 }

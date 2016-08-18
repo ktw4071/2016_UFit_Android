@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -36,6 +38,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UFitMainActivity extends AppCompatActivity implements MemberItemAdapter.DeleteMemberCallback {
 
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 0) {
+                String url = (String) msg.obj;
+                Glide.with(UFitApplication.getUFitContext()).load(url).into(leftHeadImg);
+            }
+        }
+    };
     DrawerLayout drawlayout;
     Toolbar toolbar;
     ImageView toolbarLeft, toolbarRight;
@@ -51,9 +62,9 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     int this_maxday=calendar.getActualMaximum(calendar.DAY_OF_MONTH);
     boolean member_deleted;
     JSONObject jsonObject;
+
     @Override
     public void deleteMethodCallBack(final ArrayList<UFitEntityObject> list, final UFitEntityObject object, final MemberItemAdapter adapter) {
-
         AlertDialog dialog = null;
         DialogInterface.OnClickListener dialog_schedule_member_delete = new DialogInterface.OnClickListener() {
             @Override
@@ -168,6 +179,7 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
         });
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -200,15 +212,17 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
                 drawlayout.closeDrawer(GravityCompat.START);
             }
         });
+
+        /*// 메인 트레이너 프로필 이미지 확대 및 삭제
         leftHeadImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mySerializableData serializableData = new mySerializableData();
-                serializableData.mCircleImageView = leftHeadImg;
-                getSupportFragmentManager().beginTransaction().add(UFitImageViewer.newInstance
-                        (serializableData, jsonObject, UFitNetworkConstantDefinition.URL_UFIT_TRAINER_IMAGE_UPLOAD, 0), "tr").addToBackStack("tr").commit();
+                Intent intent = new Intent(UFitMainActivity.this, new_UFitImageViewer.class);
+                intent.putExtra("data", jsonObject.toString());
+                intent.putExtra("url", UFitNetworkConstantDefinition.URL_UFIT_TRAINER_IMAGE_UPLOAD);
+                startActivity(intent);
             }
-        });
+        });*/
         //트레이너 메뉴 스케줄 관리
         final LinearLayout menuTrManageSchedule = (LinearLayout)findViewById(R.id.uf_left_menu_schedule);
         menuTrManageSchedule.setOnClickListener(new View.OnClickListener() {
@@ -257,6 +271,7 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
                 startActivity(intent);
             }
         });
+
     }
 
     public static void hideSoftKeyboard(Activity activity) {
@@ -299,9 +314,9 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
             toolbarHead.setText(arrayList.get(0)._name);
             leftHeadName.setText(arrayList.get(0)._name);
             if (arrayList.get(0)._thumbnail != null) {
-                Glide.with(UFitApplication.getUFitContext()).load(arrayList.get(0)._thumbnail).into(leftHeadImg);
+                Glide.with(UFitApplication.getUFitContext()).load(arrayList.get(0)._image).into(leftHeadImg);
             } else {
-                leftHeadImg.setImageResource(R.drawable.iiii);
+                leftHeadImg.setImageResource(R.drawable.avatar_m);
             }
 
         }

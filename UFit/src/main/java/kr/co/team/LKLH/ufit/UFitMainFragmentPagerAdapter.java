@@ -11,20 +11,18 @@ import java.util.Locale;
  * Created by ccei on 2016-08-07.
  */
 public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
-    Calendar calender = Calendar.getInstance(Locale.getDefault());
+    Calendar calendar = Calendar.getInstance(Locale.getDefault());
     int year;
     int month;
     int day;
-    int maximum_day;
     int currentPosition;
-    boolean initial_counter;
+    int initial_counter;
 
     public UFitMainFragmentPagerAdapter(FragmentManager fm, int year, int month, int day) {
         super(fm);
         this.year = year;
         this.month = month;
         this.day = day;
-        this.maximum_day = calender.getActualMaximum(calender.DAY_OF_MONTH);
         this.currentPosition = 25000 + day;
     }
 
@@ -35,23 +33,87 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(initial_counter){
-            if(position > currentPosition){
-                day++;
+        if(initial_counter> 2){
+            if((currentPosition-position) == 2){
+                calendar.add(Calendar.DAY_OF_YEAR, -2);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                currentPosition = position;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
+
+            else if((position-currentPosition) == 2){
+                calendar.add(Calendar.DAY_OF_YEAR, 2);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                currentPosition = position;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
+
+            else if((currentPosition-position) > 2){
+                calendar.add(Calendar.DAY_OF_YEAR, -3);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                currentPosition = position;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
+
+            else if((position-currentPosition) > 2){
+                calendar.add(Calendar.DAY_OF_YEAR, 3);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                currentPosition = position;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
+
+            else if(position > currentPosition){
+                calendar.add(Calendar.DAY_OF_YEAR, 1);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
             else if(position < currentPosition){
-                day--;
+                calendar.add(Calendar.DAY_OF_YEAR, -1);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
                 return UFitMainFragment.newInstance(year, month, day);
             }
         }
-        else if(!initial_counter){
-            initial_counter = !initial_counter;
-            currentPosition = position;
-            return UFitMainFragment.newInstance(year, month, day);
+        else if(initial_counter <= 2){
+            if(currentPosition == position){
+                initial_counter++;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
+
+            else if(position < currentPosition){
+                initial_counter++;
+                calendar.add(Calendar.DAY_OF_YEAR, -1);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                currentPosition = position;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
+
+            else if(position > currentPosition){
+                initial_counter++;
+                calendar.add(Calendar.DAY_OF_YEAR, 2);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                calendar.add(Calendar.DAY_OF_YEAR, -1);
+                currentPosition = position - 1;
+                return UFitMainFragment.newInstance(year, month, day);
+            }
         }
         return UFitMainFragment.newInstance(year, month, day);
 

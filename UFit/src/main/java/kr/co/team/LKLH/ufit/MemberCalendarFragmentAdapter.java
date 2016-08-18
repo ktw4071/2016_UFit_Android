@@ -16,6 +16,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
     Calendar calender = Calendar.getInstance(Locale.getDefault());
     int year;
     int month;
+    int _mid;
     int maximum_day;
     int currentPosition;
     int initial_counter;
@@ -29,10 +30,11 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
 
 
 
-    public MemberCalendarFragmentAdapter(FragmentManager fm, int year, int month) {
+    public MemberCalendarFragmentAdapter(FragmentManager fm, int year, int month, int _mid) {
         super(fm);
         this.year = year;
         this.month = month;
+        this._mid = _mid;
         this.maximum_day = calender.getActualMaximum(calender.DAY_OF_MONTH);
         this.currentPosition = 20736 + month;
 
@@ -97,7 +99,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 1 && isinital_month_january == true) {
                     year++;
                     isinital_month_january = false;
@@ -107,14 +109,14 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 10 && isInital_month_december == true) {
                     calender.set(year, month, 1);
                     startDay = calender.get(Calendar.DAY_OF_WEEK);
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 0 && isInital_month_december == true) {
                     year++;
                     toggler_year_increment = true;
@@ -124,7 +126,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 }
             } else {
                 if (fragment_month == 0 && position > currentPosition) {
@@ -135,7 +137,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 1 && toggler_year_increment == true) {
                     toggler_year_increment = false;
                     calender.set(year, month, 1);
@@ -143,7 +145,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 }
 /// 11 - 12 - 1- 11 // skipper test
                 else if (fragment_month == 10 && (currentPosition - position) > 2) {
@@ -153,7 +155,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 9 && toggler_year_increment == true) {
                     year--;
                     toggler_year_increment = false;
@@ -162,7 +164,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 11 && currentPosition > position) {
                     year--;
                     toggler_year_decrement = true;
@@ -171,7 +173,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 10 && toggler_year_decrement == true) {
                     toggler_year_decrement = false;
                     calender.set(year, month, 1);
@@ -179,7 +181,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 1 && (position - currentPosition) > 2) {
                     year++;
                     calender.set(year, month, 1);
@@ -187,7 +189,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 }
 
 //          if the inital month  = 12
@@ -199,7 +201,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 9 && toggler_year_increment == true) {
                     year--;
                     toggler_year_increment = false;
@@ -208,7 +210,7 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else if (fragment_month == 2 && toggler_year_decrement == true) {
                     year++;
                     toggler_year_decrement = false;
@@ -217,14 +219,14 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 } else {
                     calender.set(year, month, 1);
                     startDay = calender.get(Calendar.DAY_OF_WEEK);
                     maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
                     currentPosition = position;
 
-                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+                    return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
                 }
             }
 
@@ -245,197 +247,10 @@ public class MemberCalendarFragmentAdapter extends FragmentStatePagerAdapter {
             currentPosition = position;
             initial_counter++;
 
-            return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+            return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
         }
-        return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
+        return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, _mid);
     }
-
-
-/* 8888888888888888888888888888888888
-        if(initial_counter != 0) {
-
-
-            Log.e("asdasdasd", "" + calender.get(Calendar.MONTH) + ", " + fragment_month);
-//            if(toggler && fragment_month == 2 && currentPosition < position){
-//                year++;
-//                month = fragment_month;
-//                calender.set(year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                toggler = false;
-//                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-//            }
-//
-//            if(toggler && fragment_month == 9 && currentPosition > position){
-//                year--;
-//                month = fragment_month;
-//                calender.set(year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                toggler = false;
-//                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-//            }
-            Log.i("yr, f_m, c_p, p", "yr-"+ year + " f_m-" + fragment_month + "c_p-" + currentPosition + "po-" + position);
-
-            if(toggler && month == 11 && (currentPosition - position) > 2){
-                year--;
-                toggler = !toggler;
-            }
-            if(toggler && month == 0&& (position - currentPosition) > 2){
-                year++;
-                toggler = !toggler;
-            }
-
-
-//            if(fragment_month == 10){
-//                year = previous_year;
-//            }
-//            if(fragment_month == 2){
-//                year = previous_year;
-//            }
-
-            if(fragment_month == 11 && currentPosition > position){
-                year--;
-//                Log.i("yr, f_m, c_p, p", "yr-"+ year + " f_m-" + fragment_month + "c_p-" + currentPosition + "po-" + position);
-//                previous_year = year - 1;
-                month = fragment_month;
-                calender.set(year, month, 1);
-                startDay = calender.get(Calendar.DAY_OF_WEEK);
-                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-                currentPosition = position;
-                toggler = true;
-
-                String _month = "" + (month + 1);
-                if((month + 1)< 10){
-                    _month = "0" + (month + 1);
-                }
-
-//                new TrainerMonthlySchedule().execute("1","" + year + _month + "01", "" + year + _month + maximum_day);
-                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-            }
-
-
-            else if(fragment_month == 0 && currentPosition < position){
-                year++;
-//                next_year = year + 1;
-                Log.i("year", "" +  year);
-                month = fragment_month;
-                calender.set(year, month, 1);
-                startDay = calender.get(Calendar.DAY_OF_WEEK);
-                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-                currentPosition = position;
-                toggler = true;
-
-                String _month = "" + (month + 1);
-                if((month + 1)< 10){
-                    _month = "0" + (month + 1);
-                }
-
-//                new TrainerMonthlySchedule().execute("1","" + year + _month + "01", "" + year + _month + maximum_day);
-                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-            }
-
-            else{
-                Log.i("year", "" + year);
-                month = fragment_month;
-                calender.set(year, month, 1);
-                startDay = calender.get(Calendar.DAY_OF_WEEK);
-                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-                currentPosition = position;
-
-                String _month = "" + (month + 1);
-                if((month + 1)< 10){
-                    _month = "0" + (month + 1);
-                }
-
-//                new TrainerMonthlySchedule().execute("1","" + year + _month + "01", "" + year + _month + maximum_day);
-                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-            }
-        }
-
-//            if (fragment_month == 0 && position > currentPosition) {
-//                month = fragment_month;
-//                calender.set(++year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                toggler = true;
-//                return MemberCalendarFragment.newInstance(year--, month, maximum_day, startDay);
-//            }
-//
-//            else if(fragment_month == 1 && position > currentPosition){
-//                year++;
-//                month = fragment_month;
-//                calender.set(year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                toggler = true;
-//                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-//            }
-//
-//            else if(fragment_month == 11 && currentPosition > position){
-//                month = fragment_month;
-//                calender.set(--year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                toggler = true;
-//                return MemberCalendarFragment.newInstance(year++, month, maximum_day, startDay);
-//            }
-//            else if(fragment_month == 1 && currentPosition > position){
-//                year--;
-//                month = fragment_month;
-//                calender.set(year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                toggler = true;
-//                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-//            }
-//
-//            else{
-//                Log.i("year", "" + year);
-//                month = fragment_month;
-//                calender.set(year, month, 1);
-//                startDay = calender.get(Calendar.DAY_OF_WEEK);
-//                maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-//                currentPosition = position;
-//                return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-//            }
-//
-//        }
-//
-        else{
-            Log.i("year", "" + year);
-
-            calender.set(year, month, 1);
-            startDay = calender.get(Calendar.DAY_OF_WEEK);
-            maximum_day = calender.getActualMaximum(Calendar.DAY_OF_MONTH);
-            int today = calender.get(Calendar.DAY_OF_MONTH);
-            currentPosition = position;
-            initial_counter++;
-
-            String _month = "" + (month + 1);
-            if((month + 1)< 10){
-                _month = "0" + (month + 1);
-            }
-
-//
-//            TrainerMonthlySchedule ts = new TrainerMonthlySchedule();
-//            ts.execute("1","" + year + _month + "01", "" + year + _month + maximum_day);
-//            int[] asyncResult = null;
-//            try {
-//                asyncResult= ts.get();
-//            } catch (InterruptedException e) {
-//            } catch (ExecutionException e) {
-//            }
-//            return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay, monthlySchedule);
-            return MemberCalendarFragment.newInstance(year, month, maximum_day, startDay);
-        }
- 88888888888888888888888888888888888888888888*/
 
 
 

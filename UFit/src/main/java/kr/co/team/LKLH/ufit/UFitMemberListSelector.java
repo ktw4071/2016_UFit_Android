@@ -78,7 +78,11 @@ public class UFitMemberListSelector extends Fragment {
 
         @Override
         public void onBindViewHolder(final MemberSelectorAdapter.ViewHolder holder, final int position) {
-            Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.profilImg);
+            if (items.get(position)._thumbnail != null) {
+                Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.profilImg);
+            } else {
+                holder.profilImg.setImageResource(R.drawable.avatar_m);
+            }
             holder.profilName.setText(items.get(position)._name);
             holder.rView.setOnClickListener(new View.OnClickListener() {
                 @Override
