@@ -7,8 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -38,15 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UFitMainActivity extends AppCompatActivity implements MemberItemAdapter.DeleteMemberCallback {
 
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 0) {
-                String url = (String) msg.obj;
-                Glide.with(UFitApplication.getUFitContext()).load(url).into(leftHeadImg);
-            }
-        }
-    };
+
     DrawerLayout drawlayout;
     Toolbar toolbar;
     ImageView toolbarLeft, toolbarRight;

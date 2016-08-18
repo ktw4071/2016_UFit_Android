@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class UFitMainFragment extends Fragment {
     public static RecyclerView memberListRecycler;
-    public MemberItemAdapter memberItemAdapter;
+    public static MemberItemAdapter memberRecyclerViewAdapter;
     private RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(UFitApplication.getUFitContext());
 
     public static UFitMainFragment newInstance(int year, int month, int day){
@@ -37,7 +37,7 @@ public class UFitMainFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.e("크리에티느 날짜", "" + super.getArguments().getInt("ThisYear") + String.format("%02d", super.getArguments().getInt("ThisMonth")) + String.format("%2d",super.getArguments().getInt("ThisDay")));
 
-        Log.e("요청 날짜 !", super.getArguments().getInt("ThisYear") + String.format("%02d", super.getArguments().getInt("ThisMonth") + 1) + String.format("%02d",super.getArguments().getInt("ThisDay")));
+        Log.e("요청 날짜 333!", super.getArguments().getInt("ThisYear") + String.format("%02d", super.getArguments().getInt("ThisMonth") + 1) + String.format("%02d",super.getArguments().getInt("ThisDay")));
         new TodayMemberList().execute("1", "" +  super.getArguments().getInt("ThisYear") + String.format("%02d", super.getArguments().getInt("ThisMonth") + 1) + String.format("%02d",super.getArguments().getInt("ThisDay")));
         super.onCreate(savedInstanceState);
     }
@@ -50,14 +50,12 @@ public class UFitMainFragment extends Fragment {
         context = getContext();
         memberListRecycler = (RecyclerView)view.findViewById(R.id.main_recycler);
         memberListRecycler.setLayoutManager(mLayoutManager);
-        memberListRecycler.setAdapter(memberItemAdapter);
-//        return super.onCreateView(inflater, container, savedInstanceState);
+        memberListRecycler.setAdapter(memberRecyclerViewAdapter);
         return view;
     }
+//    MemberItemAdapter memberRecyclerViewAdapter;
 
     public class TodayMemberList extends AsyncTask<String, Integer, ArrayList<UFitEntityObject>> {
-
-
         @Override
         protected ArrayList doInBackground(String... strings) {
             Log.i("who am i?","" + UFitHttpConnectionHandler.mainlist(strings[0], strings[1]));
@@ -82,9 +80,18 @@ public class UFitMainFragment extends Fragment {
                 }
             }
 
-            MemberItemAdapter memberRecyclerViewAdapter = new MemberItemAdapter(context, memberList, "UFitMainActivity");
+            memberRecyclerViewAdapter = new MemberItemAdapter(context, memberList, "UFitMainActivity");
+
             memberListRecycler.setAdapter(memberRecyclerViewAdapter);
+            memberListRecycler.getAdapter().notifyDataSetChanged();
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    memberRecyclerViewAdapter.notifyDataSetChanged();
+//                }
+//            });
             super.onPostExecute(memberList);
+
         }
     }
 }

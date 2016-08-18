@@ -1,7 +1,10 @@
 package kr.co.team.LKLH.ufit;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,9 +15,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -30,9 +37,11 @@ public class MemberCalendarFragment extends Fragment {
     private int columnCount = 7;
     private MemberDaysCellAdapter mAdapter;
     private View OldView;
+    boolean firstRecyclerViewChecker;
 
 
-    public static RecyclerView workoutPartRecyclerView;
+
+    public RecyclerView workoutPartRecyclerView;
     ArrayList<UFitCalendarCellEntityObject> uFitCalendarCellEntityObject;
 
     public static MemberCalendarFragment newInstance(int year, int  month, int maximumDay, int startDay, int _mid) {
@@ -92,14 +101,10 @@ public class MemberCalendarFragment extends Fragment {
         mRecycler = (RecyclerView)view.findViewById(R.id.recycler);
         workoutPartRecyclerView = (RecyclerView)getActivity().findViewById(R.id.workout_part_recyclerview);
 
-
-
-
         Log.e("Cal_Frag_OnCreate", "" + uFitCalendarCellEntityObject);
         mGM = new GridLayoutManager(super.getContext(), columnCount, 1, false);
         mRecycler.setLayoutManager(new GridLayoutManager(super.getContext(), columnCount, 1, false));
         mRecycler.addItemDecoration(new DividerItemDecoration(super.getContext(), 1));
-
 
 
 
@@ -117,25 +122,22 @@ public class MemberCalendarFragment extends Fragment {
                 View child = mRecycler.findChildViewUnder(e.getX(), e.getY());
                 if (child != null && mGestureDetector.onTouchEvent(e) && rv.getChildAdapterPosition(child) > startDay - 2) {
                     Log.i("클릭한 날짜", "" + (rv.getChildAdapterPosition(child) - startDay + 2));
+                    Log.i("클릭한 나의멤버", "" + _mid);
                     if(OldView != null){
 
                         OldView.findViewById(R.id.todayCircle).setBackgroundResource(0);
                     }
-
-                    //플로팅 버튼 나타내기
-
-
-                    //큰 오늘 선택 써클 표시
                     child.findViewById(R.id.todayCircle).setBackgroundResource(R.drawable.today_circle);
-
                     TextView schedule_date = (TextView)getActivity().findViewById(R.id.today);
 
                     schedule_date.setText(year + ". " + String.format("%02d", (month + 1)) + ". " + String.format("%02d", (rv.getChildAdapterPosition(child) - startDay + 2)));
 
+                    clickPerformed(rv, child);
 
+/* 밖으로 메소드로 뺀 운동목록 리싸이클러뷰
                     UFitCalendarCellEntityObject object = null;
                     UFitUserWorkoutPartAdapter_RecyclerView workoutPartRecyclerViewAdapter = null;
-                    RecyclerView workoutPartRecyclerView = (RecyclerView)getActivity().findViewById(R.id.workout_part_recyclerview);
+                    workoutPartRecyclerView = (RecyclerView)getActivity().findViewById(R.id.workout_part_recyclerview);
 
                     for (UFitCalendarCellEntityObject buf : mAdapter.uFitCalendarCellEntityObject) {
                         if (buf._date == (rv.getChildAdapterPosition(child) - startDay + 2) && buf._part != null){
@@ -148,35 +150,13 @@ public class MemberCalendarFragment extends Fragment {
                             workoutPartRecyclerView.removeAllViewsInLayout();
                         }
                     }
+                    */
                     OldView = child;
 
-                    //Trainer's ID Value
-                    String _tid = "1";
-
-                    //Concatenate 0 to month that is between 1 - 9 ex) 1 -> 01, 9 -> 09
-                    String _month = "" + (month + 1);
-                    if((month + 1) < 10){
-                        _month = "0" + (month + 1);
-                    }
-                    Log.i("_month",  _month);
-
-                    //Concatenate 0 to day that is between 1 - 9 ex) 1 -> 01, 9 -> 09
-                    String _day = "" + (rv.getChildAdapterPosition(child) - startDay + 2);
-                    if((rv.getChildAdapterPosition(child) - startDay + 2) < 10){
-                        _day = "0" + (rv.getChildAdapterPosition(child) - startDay + 2);
-                    }
-                    Log.i("_day",  _day);
-                    String _date = "" + year + _month + _day;
-                    Log.i("_tid, _date", _tid + " --- " + _date);
-//                    new SelectedDayMemberList().execute(_tid, _date);
                     return true;
                 }
                 return false;
             }
-
-
-
-
 
             @Override
             public void onTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -188,25 +168,25 @@ public class MemberCalendarFragment extends Fragment {
             }
         });
 
-
-
-//        mRecycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-//            @Override
-//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-//                Toast.makeText(getContext(), "adfdsf", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//            }
-//        });
         return view;
+    }
+
+    public void clickPerformed(RecyclerView rv, View child){
+        UFitCalendarCellEntityObject object = null;
+        UFitUserWorkoutPartAdapter_RecyclerView workoutPartRecyclerViewAdapter = null;
+        workoutPartRecyclerView = (RecyclerView)getActivity().findViewById(R.id.workout_part_recyclerview);
+
+        for (UFitCalendarCellEntityObject buf : mAdapter.uFitCalendarCellEntityObject) {
+            if (buf._date == (rv.getChildAdapterPosition(child) - startDay + 2) && buf._part != null){
+                object = buf;
+                workoutPartRecyclerViewAdapter = new UFitUserWorkoutPartAdapter_RecyclerView(object._part);
+                workoutPartRecyclerView.setAdapter(workoutPartRecyclerViewAdapter);
+                break;
+            }
+            else{
+                workoutPartRecyclerView.removeAllViewsInLayout();
+            }
+        }
     }
 
     class MemberMonthlySchedule extends AsyncTask<String, Integer, ArrayList<UFitCalendarCellEntityObject>>{
@@ -223,7 +203,87 @@ public class MemberCalendarFragment extends Fragment {
                 Log.i("leelog", "null Object@@@@");
             mAdapter = new MemberDaysCellAdapter(getContext(), maximumDay, startDay, uFitCalendarCellEntityObjects);
             mRecycler.setAdapter(mAdapter);
-            //super.onPostExecute(uFitCalendarCellEntityObjects);
+        }
+    }
+
+    public class MemberDaysCellAdapter extends RecyclerView.Adapter<MemberDaysCellAdapter.ViewHolder>{
+        int maximumDay;
+        int day_counter;
+        int startDay;
+        ArrayList<UFitCalendarCellEntityObject> uFitCalendarCellEntityObject;
+        int scheduleSize;
+        Calendar calendar = Calendar.getInstance(Locale.getDefault());
+        int today = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Context mContext;
+
+        public MemberDaysCellAdapter(Context mContext, int maximumDay, int startDay,  ArrayList<UFitCalendarCellEntityObject> uFitCalendarCellEntityObject ){
+            this.mContext = mContext;
+            this.maximumDay = maximumDay;
+            this.startDay = startDay;
+            this.uFitCalendarCellEntityObject = uFitCalendarCellEntityObject;
+            this.scheduleSize = uFitCalendarCellEntityObject.size();
+            Log.i("유핏멤버캘린더오브젝트", "" + uFitCalendarCellEntityObject);
+        }
+
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemRoot = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_grid_cell, parent, false);
+            ViewHolder holder = new ViewHolder(itemRoot);
+            return holder;
+        }
+
+        @Override
+        public int getItemCount() {
+            return maximumDay + startDay - 1;
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {//1일 position 1
+            if(position >= (startDay - 1)) {
+                holder.day.setText(String.valueOf(++day_counter));
+                if(!firstRecyclerViewChecker && (position - startDay + 2) == today){
+//                    int[] testarray = {2, 4, 8};
+//                    UFitUserWorkoutPartAdapter_RecyclerView workoutPartRecyclerViewAdapter = new UFitUserWorkoutPartAdapter_RecyclerView(testarray);
+//                    workoutPartRecyclerView.setAdapter(workoutPartRecyclerViewAdapter);
+                    firstRecyclerViewChecker = !firstRecyclerViewChecker;
+                    holder.itemView.findViewById(R.id.todayCircle).setBackgroundResource(R.drawable.today_circle);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            int[] testarray = {2, 4, 8};
+                            UFitUserWorkoutPartAdapter_RecyclerView workoutPartRecyclerViewAdapter = new UFitUserWorkoutPartAdapter_RecyclerView(testarray);
+                            workoutPartRecyclerView.setAdapter(workoutPartRecyclerViewAdapter);
+                        }
+                    },0);
+                }
+                for(int i = 0; i < scheduleSize; i++){
+                    if (uFitCalendarCellEntityObject.get(i)._date == (position - startDay + 2)){
+                        if (uFitCalendarCellEntityObject.get(i)._attendance == 1) {
+                            holder.attend.setImageResource(R.drawable.schedule_circle_attend);
+                        } else {
+                            holder.attend.setImageResource(R.drawable.schedule_circle);
+                        }
+                        holder.day.setTextColor(Color.WHITE);
+                        if (uFitCalendarCellEntityObject.get(i)._part != null) {
+                            holder.part = new int[uFitCalendarCellEntityObject.get(i)._part.length];
+                            System.arraycopy(uFitCalendarCellEntityObject.get(i)._part, 0, holder.part, 0, uFitCalendarCellEntityObject.get(i)._part.length);
+                        }
+                    }
+                }
+            }
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder{
+            public TextView day;
+            public ImageView attend;
+            public int[] part;
+            public ViewHolder(final View itemView) {
+                super(itemView);
+                day = (TextView)itemView.findViewById(R.id.day);
+                attend = (ImageView)itemView.findViewById(R.id.attend);
+            }
         }
     }
 }

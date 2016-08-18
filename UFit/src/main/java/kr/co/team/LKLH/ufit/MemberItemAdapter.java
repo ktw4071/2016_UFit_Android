@@ -42,11 +42,11 @@ public class MemberItemAdapter extends RecyclerView.Adapter<MemberItemAdapter.Vi
     public MemberItemAdapter(Context context, ArrayList<UFitEntityObject> memberListObject, String activityname) {
         this.memberListObject = memberListObject;
         Log.i("leelog actina", activityname);
-        if(activityname == "UFitManageSchedule"){
+        if(activityname.equals("UFitManageSchedule")){
             Log.e("leelog", "123123");
             owner_manageschedule = (UFitManageSchedule)context;
         }
-        else if(activityname == "UFitMainActivity"){
+        else if(activityname.equals("UFitMainActivity")){
             owner_mainactivity = (UFitMainActivity)context;
         }
     }

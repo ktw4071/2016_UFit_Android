@@ -65,8 +65,10 @@
                         android:id="@+id/trainer_name"
                         android:textColor="@color/colorBlack"/>
                     <View
+                        android:id="@+id/tp_editline1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:visibility="invisible"
                         android:background="@color/colorDarkGrey"/>
                 </LinearLayout>
 
@@ -90,8 +92,10 @@
                     android:paddingBottom="3dp"
                     android:id="@+id/trainer_birth" />
                 <View
+                    android:id="@+id/tp_editline2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:visibility="invisible"
                     android:background="@color/colorDarkGrey"/>
                 </LinearLayout>
                 <LinearLayout

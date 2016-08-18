@@ -3,6 +3,7 @@ package kr.co.team.LKLH.ufit;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public DividerItemDecoration(Context context, int orientation) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
+        mDivider.setColorFilter( 0xFFE0E0E0, PorterDuff.Mode.SRC_IN );
         a.recycle();
         setOrientation(orientation);
     }

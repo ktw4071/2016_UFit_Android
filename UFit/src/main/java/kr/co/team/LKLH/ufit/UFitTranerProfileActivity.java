@@ -35,6 +35,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
     implements CalendarDatePickerDialogFragment.OnDateSetListener{
 
     boolean PROFIL_EDIT_FLAG;
+    String sendDate;
     Toolbar toolbar;
     ImageView toolbarLeft, toolbarRight;
     TextView toolbarHead;
@@ -94,12 +95,9 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                 //프로필 수정을 끝냄
                 if (!PROFIL_EDIT_FLAG) {
                     trName.setEnabled(true);
-                    trName.setBackgroundResource(R.drawable.tp_edit_text);
+                    findViewById(R.id.tp_editline1).setVisibility(View.VISIBLE);
                     trBirth.setEnabled(true);
-                    trBirth.setText(trBirth.getText().toString().substring(0, 4)
-                            + trBirth.getText().toString().substring(6, 8)
-                            + trBirth.getText().toString().substring(10, 12));
-                    trBirth.setBackgroundResource(R.drawable.tp_edit_text);
+                    findViewById(R.id.tp_editline2).setVisibility(View.VISIBLE);
                     PROFIL_EDIT_FLAG = true;
                 //프로필 수정으로 진입
                 } else {
@@ -111,7 +109,9 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                         f = new JSONArray();
                         f.put(history);
                         jsonTrainerData.put("_name", trName.getText());
-                        jsonTrainerData.put("_birth", trBirth.getText());
+                        jsonTrainerData.put("_birth", trBirth.getText().subSequence(0, 4).toString()
+                                + trBirth.getText().subSequence(6, 8)
+                                + trBirth.getText().subSequence(10, 12));
                         jsonTrainerData.put("_career", 3);
                         jsonTrainerData.put("_location1", "대전광역시");
                         jsonTrainerData.put("_location2", "여러분");
@@ -122,9 +122,9 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                     }
                     (new AsyncTPEdit()).execute(jsonTrainerData);
                     trName.setEnabled(false);
-                    trName.setBackgroundColor(Color.TRANSPARENT);
+                    findViewById(R.id.tp_editline1).setVisibility(View.INVISIBLE);
                     trBirth.setEnabled(false);
-                    trBirth.setBackgroundColor(Color.TRANSPARENT);
+                    findViewById(R.id.tp_editline2).setVisibility(View.INVISIBLE);
                     PROFIL_EDIT_FLAG = false;
                 }
             }
@@ -194,7 +194,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
 
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
-        trBirth.setText(year+""+String.format("%02d",monthOfYear+1)+""+String.format("%02d",dayOfMonth));
+        trBirth.setText(year+"년 "+String.format("%02d",monthOfYear+1)+"월 " +String.format("%02d",dayOfMonth) +"일");
     }
 
     private class AsyncTrainerProfile extends AsyncTask<Void, Void, ArrayList<UFitEntityObject>> {

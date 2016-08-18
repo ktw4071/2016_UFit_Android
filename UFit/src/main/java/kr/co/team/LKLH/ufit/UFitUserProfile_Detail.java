@@ -255,6 +255,22 @@ public class UFitUserProfile_Detail extends AppCompatActivity {
 //                ViewCompat.setElevation(fragment.getView(), 8.0f);
 //            }
 //        });
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.e("몇개나있나", viewPager.getPageMargin() + "");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         new DetailBodySize().execute(String.valueOf(_mid), "20100101", "20200101");
         new WeightLineGraph().execute(String.valueOf(_mid), "20100101", "20200101");

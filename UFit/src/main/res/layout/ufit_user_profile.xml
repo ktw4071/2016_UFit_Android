@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorWhite"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -30,45 +31,63 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:layout_height="wrap_content">
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/uf_user_profile_img"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:layout_margin="16dp"/>
-                        <android.support.design.widget.FloatingActionButton
+                            android:layout_margin="22dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+                        <ImageView
                             android:id="@+id/uf_user_profile_img_edit"
-                            android:src="@drawable/back"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:src="@drawable/btn_camera"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="-40dp"
                             android:layout_alignBottom="@+id/uf_user_profile_img"
-                            android:layout_alignRight="@+id/uf_user_profile_img"
-                            android:layout_alignEnd="@+id/uf_user_profile_img" />
+                            android:layout_toRightOf="@+id/uf_user_profile_img"
+                            android:layout_toEndOf="@+id/uf_user_profile_img" />
                     </RelativeLayout>
                     <TextView
+                        android:textSize="16sp"
                         android:id="@+id/member_profile_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:layout_margin="4dp"/>
+                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/member_profile_birthdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1940.07.12"
-                        android:layout_margin="4dp"/>
-                    <TextView
-                        android:id="@+id/member_profile_phonenumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="010-9932-3549"
-                        android:layout_margin="4dp"/>
+                        android:layout_margin="12dp"/>
+                    <RelativeLayout
+                        android:orientation="horizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp">
+                        <ImageView
+                            android:layout_marginRight="9dp"
+                            android:layout_toLeftOf="@+id/member_profile_phonenumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/btn_call_14"/>
+                        <TextView
+                            android:textSize="14dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:id="@+id/member_profile_phonenumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="010-9932-3549"
+                            />
+                    </RelativeLayout>
+
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#000000"/>
+                    android:layout_height="5dp"
+                    android:background="#f0f0f0"
+                    android:layout_marginBottom="15dp"/>
                 <LinearLayout
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
@@ -84,6 +103,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent">
                         <TextView
+                            android:textSize="11sp"
+                            android:layout_marginBottom="7dp"
                             android:text="@string/uf_member_profile_weight"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
@@ -94,7 +115,6 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/uf_member_profile_weight_value"
-                                android:textColor="#48b6c9"
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -116,6 +136,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent">
                         <TextView
+                            android:textSize="11sp"
+                            android:layout_marginBottom="7dp"
                             android:text="@string/uf_member_profile_workout_level"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
@@ -126,7 +148,6 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/uf_member_profile_workout_level_value"
-                                android:textColor="#f78c02"
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -148,6 +169,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent">
                         <TextView
+                            android:textSize="11sp"
+                            android:layout_marginBottom="7dp"
                             android:text="@string/uf_member_profile_size"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
@@ -158,7 +181,6 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/uf_member_profile_size_value"
-                                android:textColor="#a3cc80"
                                 android:layout_gravity="center"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"/>
@@ -176,22 +198,26 @@
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#000000"/>
+                    android:layout_height="5dp"
+                    android:layout_marginTop="19dp"
+                    android:background="#f0f0f0"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="center"
+                        android:layout_marginLeft="16dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="36dp"
                         android:text="출석 / 운동 스케줄"/>
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:layout_height="36dp"
+                        android:orientation="horizontal">
                         <ImageView
+                            android:layout_marginLeft="55dp"
+                            android:layout_alignParentLeft="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/btn_topleft"/>
@@ -199,15 +225,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/uf_member_calendar_date"
+                            android:layout_centerInParent="true"
                             android:text="2016. 08. 08"/>
                         <ImageView
+                            android:layout_marginRight="55dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/btn_topright"/>
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <GridView
-                        android:background="@color/colorGray"
+                        android:background="#f7f7f7"
+                        android:paddingLeft="7dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/grid_view_monday_to_sunday"
@@ -224,20 +255,23 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#000000"/>
+                    android:layout_height="5dp"
+                    android:background="#f0f0f0"/>
 
                 <TextView
+                    android:layout_marginLeft="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
                     android:id="@+id/today"
                     android:text="2016.05.12"/>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/workout_part_recyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/workout_part_recyclerview"
+                    android:layout_marginBottom="19dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>

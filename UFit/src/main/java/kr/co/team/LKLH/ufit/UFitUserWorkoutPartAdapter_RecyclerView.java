@@ -16,9 +16,10 @@ public class UFitUserWorkoutPartAdapter_RecyclerView extends RecyclerView.Adapte
     private int counter;
 
     public UFitUserWorkoutPartAdapter_RecyclerView(int[] part){
-        this.part = new int[part.length];
-        System.arraycopy(part, 0, this.part, 0, part.length);
-
+        if(part.length > 0){
+            this.part = new int[part.length];
+            System.arraycopy(part, 0, this.part, 0, part.length);
+        }
     }
 
     @Override

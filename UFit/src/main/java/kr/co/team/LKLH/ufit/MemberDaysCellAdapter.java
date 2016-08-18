@@ -1,6 +1,7 @@
 package kr.co.team.LKLH.ufit;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +33,6 @@ public class MemberDaysCellAdapter extends RecyclerView.Adapter<MemberDaysCellAd
         this.uFitCalendarCellEntityObject = uFitCalendarCellEntityObject;
         this.scheduleSize = uFitCalendarCellEntityObject.size();
         Log.i("유핏멤버캘린더오브젝트", "" + uFitCalendarCellEntityObject);
-//        Log.i("유핏멤버캘린더오브젝트 0번", "" + uFitCalendarCellEntityObject.get(0));
     }
 
 
@@ -55,14 +55,20 @@ public class MemberDaysCellAdapter extends RecyclerView.Adapter<MemberDaysCellAd
 //            if(monthlySchedule != null && Arrays.asList(monthlySchedule).contains(position - startDay + 2)){
 //                holder.attend.setImageResource(R.drawable.schedule_circle);
 //            }
-
+            if(position == 10){
+                Log.e("눌렀씁니다", " 23232" );
+                holder.itemView.performClick();
+            }
             for(int i = 0; i < scheduleSize; i++){
                 if (uFitCalendarCellEntityObject.get(i)._date == (position - startDay + 2)){
                     if (uFitCalendarCellEntityObject.get(i)._attendance == 1) {
+//                        holder.attendance = 1;
                         holder.attend.setImageResource(R.drawable.schedule_circle_attend);
                     } else {
+//                        holder.attendance = 0;
                         holder.attend.setImageResource(R.drawable.schedule_circle);
                     }
+                    holder.day.setTextColor(Color.WHITE);
                     if (uFitCalendarCellEntityObject.get(i)._part != null) {
                         holder.part = new int[uFitCalendarCellEntityObject.get(i)._part.length];
                         System.arraycopy(uFitCalendarCellEntityObject.get(i)._part, 0, holder.part, 0, uFitCalendarCellEntityObject.get(i)._part.length);
@@ -73,6 +79,7 @@ public class MemberDaysCellAdapter extends RecyclerView.Adapter<MemberDaysCellAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+//        public Integer attendance = null;
         public TextView day;
         public ImageView attend;
         public int[] part;
@@ -80,6 +87,12 @@ public class MemberDaysCellAdapter extends RecyclerView.Adapter<MemberDaysCellAd
             super(itemView);
             day = (TextView)itemView.findViewById(R.id.day);
             attend = (ImageView)itemView.findViewById(R.id.attend);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e("눌렀씁니다3333", " 23232" );
+                }
+            });
         }
     }
 

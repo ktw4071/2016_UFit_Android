@@ -3,6 +3,7 @@ package kr.co.team.LKLH.ufit;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -40,6 +41,8 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -49,6 +52,8 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -58,6 +63,8 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -67,6 +74,8 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -76,6 +85,8 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -85,12 +96,16 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
         }
         else if(initial_counter <= 2){
             if(currentPosition == position){
                 initial_counter++;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -101,6 +116,8 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 month = calendar.get(Calendar.MONTH);
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 currentPosition = position;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
 
@@ -112,9 +129,13 @@ public class UFitMainFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 day = calendar.get(Calendar.DAY_OF_MONTH);
                 calendar.add(Calendar.DAY_OF_YEAR, -1);
                 currentPosition = position - 1;
+                Log.i("나는 프레그먼트 처음포지션", "" + position);
+                Log.i("리턴하는인스턴스", ""+year + month + day);
                 return UFitMainFragment.newInstance(year, month, day);
             }
         }
+        Log.i("나는 프레그먼트 처음포지션", "" + position);
+        Log.i("리턴하는인스턴스", ""+year + month + day);
         return UFitMainFragment.newInstance(year, month, day);
 
     }
