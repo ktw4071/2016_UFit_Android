@@ -21,7 +21,10 @@
         tools:replace="android:icon">
         <meta-data
             android:name="kr.co.team.LKLH.ufit.TAcademyGlideModule"
-            android:value="GlideModule" />
+            android:value="GlideModule"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
 
         <activity
             android:name=".UFitSplashActivity"

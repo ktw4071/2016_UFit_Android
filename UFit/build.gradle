@@ -42,4 +42,5 @@ dependencies {
     compile 'com.github.crosswall:Android-Coverflow:release-v1.0.3'
     compile 'com.crystal:crystalrangeseekbar:1.0.1'
     compile 'im.dacer:AndroidCharts:1.0.1'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 }

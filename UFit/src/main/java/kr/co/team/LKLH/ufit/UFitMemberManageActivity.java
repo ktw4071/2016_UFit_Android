@@ -38,12 +38,18 @@ public class UFitMemberManageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("왜안켜짐", "SINE");
-                getSupportFragmentManager().beginTransaction().add(UFitMemberPlus.newInstance(), "schedule_plus").addToBackStack("schedule_plus").commit();
+                getSupportFragmentManager().beginTransaction().add(UFitMemberPlus.newInstance(), "schedule_plus")
+                        .addToBackStack("schedule_plus").commit();
             }
         });
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.uf_mem_manage_rcv, UFitMemberManagementRCV.newInstance());
         ft.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.finish();
     }
 }

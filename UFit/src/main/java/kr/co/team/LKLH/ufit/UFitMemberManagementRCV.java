@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class UFitMemberManagementRCV extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -47,7 +49,7 @@ public class UFitMemberManagementRCV extends Fragment {
         return rv;
     }
 
-    public static class UFitMemberManagementRCVAdapter
+    public class UFitMemberManagementRCVAdapter
             extends RecyclerView.Adapter<UFitMemberManagementRCVAdapter.ViewHolder> {
         ArrayList<UFitEntityObject> items = new ArrayList<>();
 
@@ -55,7 +57,7 @@ public class UFitMemberManagementRCV extends Fragment {
             items = arrayList;
         }
 
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
             public final CircleImageView memberImg;
             public final TextView memName;
@@ -83,7 +85,7 @@ public class UFitMemberManagementRCV extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, final int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             if (items.get(position)._thumbnail != null) {
                 Glide.with(UFitApplication.getUFitContext()).load(items.get(position)._thumbnail).into(holder.memberImg);
             } else {
@@ -93,14 +95,17 @@ public class UFitMemberManagementRCV extends Fragment {
             holder.memberBirth.setText(items.get(position)._birth);
             holder.memberCall.setText(items.get(position)._number);
             holder.memClassDate.setText(items.get(position)._dayOfTheWeek);
-            /*holder.mView.setOnClickListener(new View.OnClickListener() {
+            holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(UFitApplication.getUFitContext(), UFitUserProfile.class);
+                    Intent intent = new Intent(getActivity(), UFitUserProfile.class);
+                    Log.e("number", "1");
                     intent.putExtra("_mid", items.get(position)._mid);
-
+                    Log.e("number", "1");
+                    getActivity().startActivity(intent);
+                    Log.e("number", "1");
                 }
-            });*/
+            });
         }
 
         @Override
