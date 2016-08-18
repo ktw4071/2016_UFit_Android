@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="황비만"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:layout_toRightOf="@id/uf_right_mem_img"
         android:layout_centerVertical="true"/>
 

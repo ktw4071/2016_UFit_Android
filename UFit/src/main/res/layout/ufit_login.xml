@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
-    android:gravity="center">
+    android:gravity="center"
+    android:paddingTop="30dp">
 
     <TextView
         android:layout_marginTop="40dp"
@@ -34,7 +35,7 @@
                     android:textSize="11sp"/>
             </RadioGroup>
         <LinearLayout
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -44,11 +45,13 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_facebook"/>
             <ImageView
+                android:id="@+id/kakao_login"
                 android:layout_marginLeft="28dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_kakao"/>
             <ImageView
+                android:id="@+id/google_login"
                 android:layout_marginLeft="28dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -15,25 +15,16 @@ public class DummyDatePoooool implements Serializable {
     private String title;
     private String name;
     private String time;
-    private String img;
+    private int img;
     private String chest, armfit, calf, thigh, waist;
     private String centi = "cm";
     private int mid;
 
 
-    public void setData(int mid, String img, String name){
-        this.mid = mid;
-        this.img = img;
-        this.name= name;
-    }
-    public void setData(String img, String name, String time){
+    public void setData(int img, String name, String time){
         this.img = img;
         this.name = name;
         this.time = time;
-    }
-    public void setData(String img, String name){
-        this.img = img;
-        this.name = name;
     }
     public void setData(String chest, String thigh, String calf, String armfit, String waist) {
         SpannableStringBuilder builder = new SpannableStringBuilder(centi);
@@ -46,7 +37,7 @@ public class DummyDatePoooool implements Serializable {
         this.waist = waist;
     }
 
-    public String getImg(){
+    public int getImg(){
         return img;
     }
 

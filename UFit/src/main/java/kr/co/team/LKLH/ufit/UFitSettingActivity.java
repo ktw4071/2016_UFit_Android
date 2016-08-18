@@ -68,4 +68,9 @@ public class UFitSettingActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.finish();
+    }
 }

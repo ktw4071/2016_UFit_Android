@@ -2,7 +2,7 @@ package kr.co.team.LKLH.ufit;
 
 
 import android.Manifest;
-import android.app.AlertDialog;
+import android.support.v7.app.AlertDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -62,6 +62,7 @@ public class UFitImageUploadHelper extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+//            setTheme(android.R.style.Compat);
             setContentView(R.layout.activity_main);
             getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getWindow().setLayout(DrawerLayout.LayoutParams.MATCH_PARENT, DrawerLayout.LayoutParams.MATCH_PARENT);
@@ -85,15 +86,14 @@ public class UFitImageUploadHelper extends AppCompatActivity {
                 finish();
             }
         };
-        dialog = new AlertDialog.Builder(this)
+        dialog = new AlertDialog.Builder(this, R.style.MyDialogTheme)
                 .setTitle("업로드할 이미지 선택")
                 .setPositiveButton("앨범선택", albumListener)
                 .setNegativeButton("사진촬영", cameraListener)
-                .setNeutralButton("취소", cancelListener).create();
+                .setNeutralButton("취소", cancelListener)
+                .create();
 
         dialog.show();
-
-
     }
 
     @Override

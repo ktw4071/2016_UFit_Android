@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">UFIT</string>
     <string name="facebook_app_id">239404453126461</string>
+    <string name="kakao_app_id">ea35181cc790d61fd6e58e2cd1aaa96d</string>
     <string name="uf_profile">프로필</string>
     <string name="uf_schedule">스케줄 관리</string>
     <string name="uf_mem">회원 관리</string>
@@ -29,4 +30,14 @@
     <string name="workout_part_stretch">스트레칭</string>
     <string name="workout_part_rope">줄넘기</string>
     <string name="uf_daily_attendance">해당 날짜의 운동 스케줄을 추가해주세요</string>
+    <string name="uf_birth">생년월일 :</string>
+    <string name="uf_call">전화번호 :</string>
+    <string name="uf_date">수업요일 :</string>
+    <string name="uf_last_message">마지막 메세지 : </string>
+    <string name="uf_choose_member">회원선택</string>
+    <string name="uf_choose_time">시간추가</string>
+    <string name="uf_schedule_add_success">스케줄을 추가했습니다</string>
+    <string name="uf_schedule_add_fail">값이 입력되지 않았습니다</string>
+    <string name="uf_schedule_add_explain">회원이름 선택 후, 해당 스케줄을 등록해주세요.</string>
+
 </resources>

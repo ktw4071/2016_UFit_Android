@@ -11,4 +11,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorGgrey">#dddddd</color>
+    <color name="colorLightGray">#8c8c8c</color>
 </resources>

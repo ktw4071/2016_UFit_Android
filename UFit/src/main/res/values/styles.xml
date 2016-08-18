@@ -14,5 +14,13 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@color/colorDarkGrey</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/image_upload_dialog</item>
+    </style>
 
 </resources>

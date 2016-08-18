@@ -4,14 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="8.5"
+    android:weightSum="9.5"
     tools:context="kr.co.team.LKLH.ufit.UFitSettingActivity">
 
     <include layout="@layout/ufit_toolbar"/>
 
 
     <Space
-        android:layout_weight="0.5"
+        android:layout_weight="0.25"
         android:layout_width="match_parent"
         android:layout_height="0px" />
     <LinearLayout
@@ -40,6 +40,12 @@
             android:src="@drawable/btn_off"/>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorGray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -65,7 +71,14 @@
             android:textSize="16sp"
             android:textColor="#adadad"
             android:text="진동"/>
+
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorGray"/>
 
     <LinearLayout
         android:id="@+id/setting_mail_to_dev"
@@ -92,6 +105,12 @@
             android:layout_height="wrap_content"
             android:src="@drawable/btn_move"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorGray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -116,6 +135,12 @@
             android:layout_height="wrap_content"
             android:src="@drawable/btn_move" />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorGray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

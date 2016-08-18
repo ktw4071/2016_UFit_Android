@@ -1,8 +1,8 @@
 package kr.co.team.LKLH.ufit;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-
 import com.tsengvn.typekit.Typekit;
 
 /**
@@ -10,7 +10,14 @@ import com.tsengvn.typekit.Typekit;
  */
 public class UFitApplication extends Application {
     private static Context mContext;
+    private static volatile Activity currentActivity = null;
 
+    /*public static Activity getCurrentActivity() {
+        return currentActivity;
+    }
+    public static void setCurrentActivity(Activity currentActivity) {
+        UFitApplication.currentActivity = currentActivity;
+    }*/
     @Override
     public void onCreate() {
         super.onCreate();

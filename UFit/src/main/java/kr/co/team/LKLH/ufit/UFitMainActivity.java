@@ -50,9 +50,10 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     DrawerLayout drawlayout;
     Toolbar toolbar;
     ImageView toolbarLeft, toolbarRight;
-    ImageView manageSchedule, drawerClose;
+    ImageView manageSchedule;
     TextView toolbarHead, calendarDate, leftHeadName;
     CircleImageView leftHeadImg;
+    EditText rightDrawMemberSearch;
     Intent intent;
     Calendar calendar = Calendar.getInstance();
     int currentPosition;
@@ -119,7 +120,7 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
         jsonObject = new JSONObject();
         // 드로우레이아웃
         drawlayout = (DrawerLayout)findViewById(R.id.uf_left_drawer);
-        drawerClose = (ImageView)findViewById(R.id.drawer_close);
+        rightDrawMemberSearch = (EditText)findViewById(R.id.rightdrawsearch);
 
         manageSchedule = (ImageView)findViewById(R.id.uf_schedule_fab) ;
         //툴바 설정
@@ -183,10 +184,15 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     @Override
     protected void onResume() {
         super.onResume();
-        drawerClose.setOnClickListener(new View.OnClickListener() {
+
+        rightDrawMemberSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View view) {
-                drawlayout.closeDrawers();
+            public void onFocusChange(View view, boolean b) {
+                if (rightDrawMemberSearch.isFocused()){
+                    rightDrawMemberSearch.setHint("");
+                } else {
+                    rightDrawMemberSearch.setHint(R.string.uf_inputmember);
+                }
             }
         });
         // 툴바 드로우 레이아웃 버튼

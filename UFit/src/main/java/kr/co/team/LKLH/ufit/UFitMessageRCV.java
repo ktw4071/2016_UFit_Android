@@ -61,7 +61,6 @@ public class UFitMessageRCV extends Fragment {
             public View rView;
             public CircleImageView messageImg;
             public TextView messageName, messageTime;
-            public LinearLayout messageItem;
 
 
             public ViewHolder(View view){
@@ -70,7 +69,6 @@ public class UFitMessageRCV extends Fragment {
                 messageImg = (CircleImageView)rView.findViewById(R.id.message_profileimg);
                 messageName= (TextView)rView.findViewById(R.id.message_name);
                 messageTime= (TextView)rView.findViewById(R.id.message_time);
-                messageItem= (LinearLayout)rView.findViewById(R.id.uf_message_list);
             }
 
         }
@@ -84,10 +82,9 @@ public class UFitMessageRCV extends Fragment {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             DummyDatePoooool t = items.get(position);
-//            holder.messageImg.setImageResource(t.img);
             holder.messageName.setText(t.getName());
             holder.messageTime.setText(t.getTime());
-            holder.messageItem.setOnClickListener(new View.OnClickListener(){
+            holder.rView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
                     context.startActivity(new Intent(context, UFitMessageChatList.class));

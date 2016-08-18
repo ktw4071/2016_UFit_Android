@@ -94,12 +94,12 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                 //프로필 수정을 끝냄
                 if (!PROFIL_EDIT_FLAG) {
                     trName.setEnabled(true);
-                    trName.setBackgroundResource(android.R.drawable.edit_text);
+                    trName.setBackgroundResource(R.drawable.tp_edit_text);
                     trBirth.setEnabled(true);
                     trBirth.setText(trBirth.getText().toString().substring(0, 4)
                             + trBirth.getText().toString().substring(6, 8)
                             + trBirth.getText().toString().substring(10, 12));
-                    trBirth.setBackgroundResource(android.R.drawable.edit_text);
+                    trBirth.setBackgroundResource(R.drawable.tp_edit_text);
                     PROFIL_EDIT_FLAG = true;
                 //프로필 수정으로 진입
                 } else {

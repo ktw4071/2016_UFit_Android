@@ -17,19 +17,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="223"
+            android:layout_weight="215"
             android:background="#522AFF"
             android:orientation="vertical"
             android:gravity="center_horizontal|bottom"
-            android:paddingBottom="27dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/drawer_close"
-                android:layout_gravity="top|right"
-                android:src="@drawable/btn_menu_x"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"/>
+            android:paddingBottom="30dp">
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="60dp"
     android:paddingTop="10dp"
     android:gravity="center_vertical"
     android:id="@+id/mem_select_item"
@@ -12,8 +12,8 @@
     android:background="?android:attr/selectableItemBackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/memselect_img"
         android:src="@drawable/pic"/>

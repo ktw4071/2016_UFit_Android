@@ -16,18 +16,20 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_edittext_pink"
         android:orientation="horizontal"
-        android:layout_margin="10dp"
+        android:layout_margin="16dp"
         android:gravity="center">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_search_member"/>
         <EditText
+            android:id="@+id/mem_manage_search"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="41dp"
             android:hint="@string/uf_inputmember"
-            android:textSize="13sp"
-            android:textColor="@color/colorMain"
+            android:textColorHint="@color/colorMain"
+            android:textSize="14sp"
+            android:textColor="@color/colorDarkGrey"
             android:background="@null"/>
     </LinearLayout>
 

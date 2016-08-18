@@ -24,11 +24,13 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:hint="Input Member"
+            android:layout_height="42dp"
+            android:hint="@string/uf_inputmember"
+            android:textSize="14dp"
+            android:textColorHint="@color/colorMain"
+            android:textColor="@color/colorDarkGrey"
             android:background="@null"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
