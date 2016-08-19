@@ -21,10 +21,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class new_UFitImageViewer extends AppCompatActivity {
 
     JSONObject jsonObject;
+    PhotoView mAttacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,12 @@ public class new_UFitImageViewer extends AppCompatActivity {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
         getWindow().setLayout(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
+        mAttacher = (PhotoView)findViewById(R.id.uf_image_viewer);
+
         try {
             jsonObject = new JSONObject(getIntent().getStringExtra("data"));
             Glide.with(UFitApplication.getUFitContext()).load(jsonObject.getString("_image"))
-                    .into((ImageView) findViewById(R.id.uf_image_viewer));
+                    .into(mAttacher);
         } catch (JSONException e) {
             e.printStackTrace();
         }

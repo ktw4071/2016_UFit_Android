@@ -45,7 +45,8 @@ public class UFitTrainerImageRCV extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rv = (RecyclerView)inflater.inflate(R.layout.ufit_fragment_recycler_view, container, false);
-        rv.setLayoutManager(new GridLayoutManager(UFitApplication.getUFitContext(), 3, 1, false));
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new GridLayoutManager(UFitApplication.getUFitContext(), 3));
         (new AsyncTrainerImage()).execute();
 
         return rv;

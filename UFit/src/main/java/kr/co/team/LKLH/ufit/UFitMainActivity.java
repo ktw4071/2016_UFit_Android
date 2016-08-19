@@ -175,16 +175,7 @@ public class UFitMainActivity extends AppCompatActivity implements MemberItemAda
     protected void onResume() {
         super.onResume();
 
-        rightDrawMemberSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (rightDrawMemberSearch.isFocused()){
-                    rightDrawMemberSearch.setHint("");
-                } else {
-                    rightDrawMemberSearch.setHint(R.string.uf_inputmember);
-                }
-            }
-        });
+
         // 툴바 드로우 레이아웃 버튼
         toolbarLeft.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,9 +10,9 @@
         android:orientation="vertical"
         android:layout_height="match_parent"
         android:layout_width="300dp"
-        android:layout_gravity="start"
+        android:layout_gravity="start|left"
         android:clickable="true"
-        android:fitsSystemWindows="false">
+        android:fitsSystemWindows="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -200,6 +200,6 @@
     <include layout="@layout/ufit_right_drawer"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end" />
 
 </android.support.v4.widget.DrawerLayout>

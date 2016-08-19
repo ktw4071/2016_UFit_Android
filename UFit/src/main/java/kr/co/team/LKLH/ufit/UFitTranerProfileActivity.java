@@ -43,6 +43,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
     public CircleImageView trProFileImg;
     JSONObject jsonTrainerData, history;
     JSONArray f;
+    TextView addCareer;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -71,6 +72,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
         toolbarHead.setText(R.string.uf_profile);
         toolbarLeft.setImageResource(R.drawable.btn_back);
         toolbarRight.setImageResource(R.drawable.btn_setting_tp);
+        addCareer = (TextView)findViewById(R.id.addaddadd);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.uf_trainer_history, UFitTrainerHistoryRCV.newInstance())
@@ -92,14 +94,14 @@ public class UFitTranerProfileActivity extends AppCompatActivity
         toolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //프로필 수정을 끝냄
+                //프로필 수정을 진입
                 if (!PROFIL_EDIT_FLAG) {
                     trName.setEnabled(true);
                     findViewById(R.id.tp_editline1).setVisibility(View.VISIBLE);
                     trBirth.setEnabled(true);
                     findViewById(R.id.tp_editline2).setVisibility(View.VISIBLE);
                     PROFIL_EDIT_FLAG = true;
-                //프로필 수정으로 진입
+                //프로필 수정을 끝냄
                 } else {
                     try {
                         history = new JSONObject();
@@ -175,7 +177,15 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                 }
             }
         });
+        addCareer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().add(UFitTrainerCareer.newInstance(), null)
+                        .addToBackStack(null).commit();
+            }
+        });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

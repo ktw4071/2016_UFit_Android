@@ -1,12 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="BaseTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorMain</item>
-        <item name="colorPrimaryDark">@color/colorMain</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
+    </style>
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorMain</item>
+    <item name="colorPrimaryDark">@color/colorMain</item>
+    <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppcompatFullscreen" parent="@style/Theme.AppCompat.Light">
         <item name="windowNoTitle">true</item>
@@ -21,6 +23,10 @@
         <item name="android:textColorPrimary">@color/colorBlack</item>
         <!--dialog background-->
         <item name="android:windowBackground">@drawable/image_upload_dialog</item>
+    </style>
+    <style name="BottomDialogAnimation" parent="@android:style/Theme.Dialog">
+        <item name="android:windowEnterAnimation">@anim/tp_record_add_up</item>
+        <item name="android:windowExitAnimation">@anim/tp_record_add_down</item>
     </style>
 
 </resources>
