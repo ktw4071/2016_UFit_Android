@@ -1,209 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:windowSoftInputMode="stateAlwaysVisible"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/ufit_toolbar"/>
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:windowSoftInputMode="stateAlwaysVisible">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <include layout="@layout/ufit_toolbar" />
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:orientation="vertical">
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="11dp">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/uf_tr_profile_img"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/alf"
-                        android:layout_marginTop="23dp"
-                        android:layout_marginBottom="5dp"/>
-                    <ImageView
-                        android:id="@+id/uf_trainer_image_edit"
-                        android:src="@drawable/btn_camera"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="40dp"
-                        android:baselineAlignBottom="true"
-                        android:layout_marginBottom="8dp"/>
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="11dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginBottom="10dp">
-                    <EditText
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/uf_tr_profile_img"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="23dp"
+                            android:src="@drawable/alf" />
+
+                        <ImageView
+                            android:id="@+id/uf_trainer_image_edit"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="40dp"
+                            android:baselineAlignBottom="true"
+                            android:src="@drawable/btn_camera" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
-                        android:text="@string/app_name"
-                        android:enabled="false"
-                        android:background="@null"
-                        android:paddingRight="8dp"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="3dp"
-                        android:id="@+id/trainer_name"
-                        android:textColor="@color/colorBlack"/>
-                    <View
-                        android:id="@+id/tp_editline1"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:visibility="invisible"
-                        android:background="@color/colorDarkGrey"/>
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/trainer_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:paddingTop="5dp"
+                            android:text="@string/app_name"
+                            android:textColor="@color/colorBlack" />
+
+                        <View
+                            android:id="@+id/tp_editline1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorDarkGrey"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/trainer_birth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="1940.07.12"
+                            android:textColor="@color/colorBlack" />
+
+                        <View
+                            android:id="@+id/tp_editline2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorDarkGrey"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:paddingBottom="2dp"
+                            android:src="@drawable/btn_locate_tp" />
+
+                        <TextView
+                            android:id="@+id/trainer_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorDarkGrey" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal"
-                    android:layout_marginBottom="15dp">
-                <TextView
-                    android:maxLines="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:background="@null"
-                    android:text="1940.07.12"
-                    android:textColor="@color/colorBlack"
-                    android:enabled="false"
-                    android:paddingRight="8dp"
-                    android:paddingLeft="8dp"
-                    android:paddingBottom="3dp"
-                    android:id="@+id/trainer_birth" />
                 <View
-                    android:id="@+id/tp_editline2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:visibility="invisible"
-                    android:background="@color/colorDarkGrey"/>
-                </LinearLayout>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorGgrey" />
+
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="경력" />
+
+                    <TextView
+                        android:id="@+id/trainer_career"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="관리회원" />
+
+                    <TextView
+                        android:id="@+id/trainer_getmem"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorGgrey" />
+
+                <TextView
+                    android:id="@+id/addaddadd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="15dp">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/btn_locate_tp"
-                        android:layout_marginRight="10dp"
-                        android:paddingBottom="2dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorDarkGrey"
-                        android:id="@+id/trainer_location"/>
-                </LinearLayout>
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="29dp"
+                    android:layout_marginTop="16dp"
+                    android:text="이력/수상경력"
+                    android:textSize="13sp" />
 
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorGgrey"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_margin="8dp">
+                <LinearLayout
+                    android:id="@+id/uf_trainer_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" />
 
-                <TextView
-                    android:layout_width="0dp"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorGgrey" /><!--구분선-->
+                <ImageView
+                    android:id="@+id/uf_trainer_album_edit"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="경력"
-                    android:layout_weight="1"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:id="@+id/trainer_career"
-                    android:layout_weight="1"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="관리회원"
-                    android:layout_weight="1"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:id="@+id/trainer_getmem"
-                    android:layout_weight="1"
-                    android:gravity="center"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorGgrey"/>
-            <TextView
-                android:id="@+id/addaddadd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이력/수상경력"
-                android:textSize="13sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="29dp"
-                android:layout_marginBottom="14dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/uf_trainer_history"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_margin="8dp"/>
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/btn_plus" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorGgrey"/><!--구분선-->
-            <ImageView
-                android:id="@+id/uf_trainer_album_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/btn_plus"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="30dp"
-                android:orientation="vertical"
-                android:id="@+id/ufit_trainer_image">
+                <LinearLayout
+                    android:id="@+id/ufit_trainer_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="vertical"></LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
-</LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bottom_career"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMain"
+        android:gravity="center_vertical"
+        android:layout_gravity="bottom"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:behavior_peekHeight="120dp"
+        android:paddingLeft="16dp">
+
+        <EditText
+            android:id="@+id/uf_career_year"
+            android:gravity="center"
+            android:layout_weight="3.1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:hint="해당년도 기재"
+            android:textSize="13sp"
+            android:inputType="phone|number"
+            android:background="@drawable/rounded_career_edit"
+            android:layout_marginRight="12dp"/>
+        <EditText
+            android:id="@+id/uf_career_title"
+            android:gravity="center_vertical|left"
+            android:layout_weight="5.6"
+            android:layout_width="0dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:hint="이력/경력 내용 입력"
+            android:background="@drawable/rounded_career_edit"/>
+        <ImageView
+            android:id="@+id/uf_send_career"
+            android:layout_weight="1.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_plus_8"/>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

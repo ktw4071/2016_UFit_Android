@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "327204677149",
+    "project_id": "firebase-ufit"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327204677149:android:fa7cb6c83d9f458a",
+        "android_client_info": {
+          "package_name": "kr.co.team.LKLH.ufit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327204677149-uqstghd9q6sdr444icss5aqm22l0ogb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.co.team.LKLH.ufit",
+            "certificate_hash": "CFFF385F3CE1597AC17C22E66FDCCA04054DEA41"
+          }
+        },
+        {
+          "client_id": "327204677149-7t4aun8n1vk6lam51t6phofeqopu0ng6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTtSqyJRE5Iv28Ovnphkr8RSuXRulMZds"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

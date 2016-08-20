@@ -28,7 +28,7 @@ public class UFitTrainerImageRCV extends Fragment {
 
     RecyclerView rv;
     UFitTrainerImageRCVAdapter adapter;
-    ArrayList<JSONObject> items;
+    public ArrayList<JSONObject> items;
 
     static UFitTrainerImageRCV newInstance() {
         UFitTrainerImageRCV f = new UFitTrainerImageRCV();

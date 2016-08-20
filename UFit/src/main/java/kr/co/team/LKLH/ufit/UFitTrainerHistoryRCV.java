@@ -25,29 +25,28 @@ public class UFitTrainerHistoryRCV extends Fragment {
 
     RecyclerView rv;
 
+    UFitTrainerHistoryRCVAdapter history = new UFitTrainerHistoryRCVAdapter();
+
     static UFitTrainerHistoryRCV newInstance() {
         UFitTrainerHistoryRCV f = new UFitTrainerHistoryRCV();
         Bundle b = new Bundle();
         f.setArguments(b);
         return f;
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rv = (RecyclerView)inflater.inflate(R.layout.ufit_fragment_recycler_view, container, false);
         rv.setLayoutManager(new LinearLayoutManager(UFitApplication.getUFitContext()));
         (new AsyncTrainerProfile()).execute();
+        rv.setAdapter(history);
 
         return rv;
     }
-    public static class UFitTrainerHistoryRCVAdapter extends RecyclerView.Adapter<UFitTrainerHistoryRCVAdapter.ViewHolder> {
-        ArrayList<JSONObject> items = new ArrayList<>();
+    ArrayList<JSONObject> items = new ArrayList<>();
+    public class UFitTrainerHistoryRCVAdapter extends RecyclerView.Adapter<UFitTrainerHistoryRCVAdapter.ViewHolder> {
 
-        public UFitTrainerHistoryRCVAdapter(ArrayList<JSONObject> arrayList) {
-            items = arrayList;
-        }
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             public View rView;
             public TextView thYear, thTitle;
 
@@ -108,7 +107,10 @@ public class UFitTrainerHistoryRCV extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<JSONObject> arrayList) {
             super.onPostExecute(arrayList);
-            rv.setAdapter(new UFitTrainerHistoryRCVAdapter(arrayList));
+            for (JSONObject obj : arrayList) {
+                items.add(obj);
+            }
+            history.notifyDataSetChanged();
         }
     }
 }

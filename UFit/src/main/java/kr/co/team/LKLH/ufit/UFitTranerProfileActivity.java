@@ -1,6 +1,7 @@
 package kr.co.team.LKLH.ufit;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -9,11 +10,18 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -43,7 +51,8 @@ public class UFitTranerProfileActivity extends AppCompatActivity
     public CircleImageView trProFileImg;
     JSONObject jsonTrainerData, history;
     JSONArray f;
-    TextView addCareer;
+    LinearLayout addCareer;
+    BottomSheetBehavior mBottomSheet;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -56,6 +65,16 @@ public class UFitTranerProfileActivity extends AppCompatActivity
         setContentView(R.layout.ufit_trainer_profile);
         (new AsyncTrainerProfile()).execute();
         jsonTrainerData = new JSONObject();
+
+        /*LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.ufit_trainer_career_add, null);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(view).create();
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();*/
+        addCareer = (LinearLayout)findViewById(R.id.bottom_career);
+        mBottomSheet = BottomSheetBehavior.from(addCareer);
 
         toolbar = (Toolbar) findViewById(R.id.uf_main_toolbar);
         setSupportActionBar(toolbar);
@@ -72,16 +91,20 @@ public class UFitTranerProfileActivity extends AppCompatActivity
         toolbarHead.setText(R.string.uf_profile);
         toolbarLeft.setImageResource(R.drawable.btn_back);
         toolbarRight.setImageResource(R.drawable.btn_setting_tp);
-        addCareer = (TextView)findViewById(R.id.addaddadd);
 
+        rcv = UFitTrainerHistoryRCV.newInstance();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.uf_trainer_history, UFitTrainerHistoryRCV.newInstance())
+                .replace(R.id.uf_trainer_history, rcv)
                 .commit();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.ufit_trainer_image, UFitTrainerImageRCV.newInstance())
                 .commit();
-    }
 
+
+        //rcv.items.add(null);
+        //rcv.history.notifyDataSetChanged();
+    }
+    UFitTrainerHistoryRCV rcv = null;
     @Override
     protected void onResume() {
         super.onResume();
@@ -96,6 +119,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
             public void onClick(View view) {
                 //프로필 수정을 진입
                 if (!PROFIL_EDIT_FLAG) {
+                    mBottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
                     trName.setEnabled(true);
                     findViewById(R.id.tp_editline1).setVisibility(View.VISIBLE);
                     trBirth.setEnabled(true);
@@ -123,6 +147,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                         Log.e("TATA", e.toString());
                     }
                     (new AsyncTPEdit()).execute(jsonTrainerData);
+                    mBottomSheet.getSkipCollapsed();
                     trName.setEnabled(false);
                     findViewById(R.id.tp_editline1).setVisibility(View.INVISIBLE);
                     trBirth.setEnabled(false);
@@ -177,13 +202,7 @@ public class UFitTranerProfileActivity extends AppCompatActivity
                 }
             }
         });
-        addCareer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().add(UFitTrainerCareer.newInstance(), null)
-                        .addToBackStack(null).commit();
-            }
-        });
+
     }
 
 

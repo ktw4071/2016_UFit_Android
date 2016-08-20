@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 24
@@ -7,7 +7,7 @@ android {
 
 
     defaultConfig {
-        applicationId "kr.co.tacademy.encho.ufit"
+        applicationId "kr.co.team.LKLH.ufit"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -51,6 +51,6 @@ dependencies {
     compile 'com.crystal:crystalrangeseekbar:1.0.1'
     compile 'im.dacer:AndroidCharts:1.0.1'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-    //    compile 'com.google.android.gms:play-services-auth:8.3.0'
+        compile 'com.google.android.gms:play-services-auth:8.3.0'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
 }

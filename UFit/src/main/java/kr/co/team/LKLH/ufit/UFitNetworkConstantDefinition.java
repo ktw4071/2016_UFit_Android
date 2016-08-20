@@ -12,6 +12,7 @@ public class UFitNetworkConstantDefinition {
     public static final String URL_UFIT_TRAINER_ALBUM_UPLOAD = "http://52.78.32.128:4610/trainer/album?_tid=1";
     public static final String URL_Ufit_Trainer_Member_Schedule_Delete = "http://52.78.32.128:4610/trainer/schedule?_tid=1";
     public static final String URL_UFIT_TRAINER_SIMPLE_PROFILE = "http://52.78.32.128:4610/trainer/profile/simple?_tid=1";
+    public static final String URL_UFIT_TRAINER_LOGIN = "http://52.78.32.128:4610/trainer/auth/login";
     /*
     * 위는 트레이너 아래는 멤버
     */

@@ -39,5 +39,8 @@
     <string name="uf_schedule_add_success">스케줄을 추가했습니다</string>
     <string name="uf_schedule_add_fail">값이 입력되지 않았습니다</string>
     <string name="uf_schedule_add_explain">회원이름 선택 후, 해당 스케줄을 등록해주세요.</string>
+    <string name="loading">loading</string>
+    <string name="signed_out">signed_out</string>
+    <string name="signed_in_fmt">LoginTest</string>
 
 </resources>
