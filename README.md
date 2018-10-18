@@ -1,4 +1,5 @@
 # 2016_UFit_Android
+ [Go to Wiki Page](https://github.com/ktw4071/2016_UFit_Android/wiki)
 
 ![1](https://cloud.githubusercontent.com/assets/10269640/20405211/192e4d64-acd6-11e6-8dde-1649e8e7ae95.png)
 ![2](https://cloud.githubusercontent.com/assets/10269640/20405216/1c4314b2-acd6-11e6-8581-2813920a960c.png)
